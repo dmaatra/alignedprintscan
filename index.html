@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aligned Print &amp; Scan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue-1:#0610a8;
+      --blue-2:#0a1cd9;
+      --blue-3:#08125d;
+      --blue-4:#04092b;
+      --gold:#d4af37;
+      --gold-soft:#f3df86;
+      --text:#f8f7f2;
+      --muted:#d5dcff;
+      --muted-2:#aeb9f0;
+      --panel:rgba(255,255,255,0.08);
+      --panel-2:rgba(255,255,255,0.05);
+      --line:rgba(243,223,134,0.18);
+      --shadow:0 24px 60px rgba(0,0,0,0.35);
+      --radius-xl:30px;
+      --radius-lg:22px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(212,175,55,.10), transparent 25%),
+        linear-gradient(180deg, #0a1cd9 0%, #08125d 45%, #04092b 100%);
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter:blur(10px);
+      background:rgba(4, 9, 43, .84);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand img{
+      width:74px;
+      height:74px;
+      object-fit:contain;
+      display:block;
+      filter:drop-shadow(0 8px 18px rgba(0,0,0,.18));
+    }
+
+    .brand-name{
+      display:flex;
+      flex-direction:column;
+      line-height:1.18;
+    }
+
+    .brand-name strong{
+      font-family:'DM Serif Display',serif;
+      font-size:26px;
+      color:#fff;
+      font-weight:400;
+      letter-spacing:.01em;
+    }
+
+    .brand-name span{
+      color:var(--gold-soft);
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.04em;
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:42px 24px 82px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:32px;
+      align-items:start;
+    }
+
+    .hero-left{
+      padding-top:18px;
+    }
+
+    .badge{
+      display:inline-block;
+      margin-bottom:24px;
+      background:rgba(212,175,55,.14);
+      border:1px solid rgba(212,175,55,.32);
+      color:#f4dd96;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:0 0 22px;
+      font-family:'DM Serif Display',serif;
+      font-size:64px;
+      line-height:1.08;
+      letter-spacing:-0.01em;
+      color:#fff;
+      max-width:650px;
+      font-weight:400;
+    }
+
+    .lead{
+      max-width:640px;
+      color:var(--muted);
+      font-size:20px;
+      line-height:1.85;
+      margin-bottom:14px;
+      font-weight:500;
+      letter-spacing:.1px;
+    }
+
+    .sublead{
+      max-width:620px;
+      color:#f6f1df;
+      font-size:16px;
+      line-height:1.85;
+      font-weight:600;
+      margin-bottom:26px;
+      letter-spacing:.1px;
+    }
+
+    .buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:178px;
+      padding:14px 20px;
+      border-radius:14px;
+      text-decoration:none;
+      font-size:15px;
+      font-weight:700;
+      transition:all .2s ease;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:var(--gold);
+      color:#13254d;
+      box-shadow:0 10px 22px rgba(212,175,55,.20);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.12);
+      color:#fff;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+
+    .price-card{
+      background:linear-gradient(180deg, rgba(10,28,217,.22), rgba(6,16,168,.18)), var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow);
+      padding:24px;
+      backdrop-filter:blur(8px);
+    }
+
+    .price-card h2{
+      margin:0 0 8px;
+      font-family:'DM Serif Display',serif;
+      font-size:36px;
+      color:var(--gold);
+      font-weight:400;
+    }
+
+    .price-card p.top{
+      margin:0 0 18px;
+      color:#edf2ff;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .price-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .pill{
+      background:var(--panel-2);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      padding:12px;
+      min-height:74px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .pill strong{
+      color:#fff;
+      font-size:13px;
+      margin-bottom:4px;
+      display:block;
+    }
+
+    .pill span{
+      color:#eef3ff;
+      font-size:13px;
+      font-weight:600;
+      line-height:1.45;
+    }
+
+    .sections{
+      margin-top:42px;
+      display:grid;
+      gap:18px;
+    }
+
+    .section-title{
+      margin:12px 0 12px;
+      font-family:'DM Serif Display',serif;
+      font-size:34px;
+      color:var(--gold);
+      font-weight:400;
+      letter-spacing:.01em;
+    }
+
+    .card,.wide-card{
+      background:linear-gradient(180deg, rgba(10,28,217,.10), rgba(6,16,168,.06)), var(--panel);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:20px 22px;
+      backdrop-filter:blur(6px);
+    }
+
+    .card p,.wide-card p{
+      margin:0;
+      color:#f4f7ff;
+      line-height:1.9;
+      letter-spacing:.2px;
+      font-size:15px;
+      font-weight:500;
+    }
+
+    .service-line{
+      font-size:16px;
+      font-weight:700;
+      color:#fff;
+      line-height:1.95;
+    }
+
+    .how-grid,.two-grid,.notes-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    .how-grid{grid-template-columns:1fr}
+    .two-grid,.notes-grid{grid-template-columns:1fr 1fr}
+
+    .step-title,.mini-title{
+      display:block;
+      margin-bottom:8px;
+      font-size:16px;
+      font-weight:700;
+      color:#fff;
+    }
+
+    .contact-note{
+      margin-top:8px !important;
+      color:#f3e9bf !important;
+      font-size:14px !important;
+      font-weight:600 !important;
+    }
+
+    .footer{
+      margin-top:30px;
+      text-align:center;
+      color:var(--muted-2);
+      font-size:13px;
+      line-height:1.8;
+      letter-spacing:.2px;
+    }
+
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      h1{font-size:52px}
+      .two-grid,.notes-grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width:640px){
+      .topbar-inner,.wrap{padding-left:16px;padding-right:16px}
+      .brand img{width:60px;height:60px}
+      .brand-name strong{font-size:22px}
+      h1{font-size:42px}
+      .lead{font-size:18px}
+      .price-grid{grid-template-columns:1fr 1fr}
+      .section-title{font-size:30px}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="aligned-logo-transparent2.png" alt="Aligned logo" />
+        <div class="brand-name">
+          <strong>Aligned Print &amp; Scan</strong>
+          <span>Print, Scan, Notary &amp; Loan Signing</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="hero-grid">
+      <div class="hero-left">
+        <div class="badge">Same-Day Service Available</div>
+
+        <h1>Simple.<br>Reliable.<br>Local document service.</h1>
+
+        <div class="lead">
+          Print, copy, scan, fax, and laminate without the hassle. Designed for everyday neighborhood needs with secure pickup and local delivery.
+        </div>
+
+        <div class="sublead">
+          Secure, contactless pickup and local delivery available.
+        </div>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="mailto:hello@alignedprintscan.com">Email Your Order</a>
+          <a class="btn btn-secondary" href="sms:+14693835923">Text for Appointment</a>
+        </div>
+      </div>
+
+      <aside class="price-card">
+        <h2>Quick Pricing</h2>
+        <p class="top">Clear, neighborhood-friendly pricing with a premium look and simple ordering.</p>
+
+        <div class="price-grid">
+          <div class="pill"><strong>B&amp;W</strong><span>$0.25/page</span></div>
+          <div class="pill"><strong>Color</strong><span>$0.75/page</span></div>
+          <div class="pill"><strong>Scan</strong><span>$2 (up to 5 pages)</span></div>
+          <div class="pill"><strong>Fax</strong><span>$3 first page</span></div>
+          <div class="pill"><strong>Lamination</strong><span>$3 per sheet</span></div>
+          <div class="pill"><strong>Delivery</strong><span>$5–$10 in the area</span></div>
+          <div class="pill"><strong>Rush</strong><span>+$5 if available</span></div>
+          <div class="pill"><strong>Minimum</strong><span>$5 order</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="sections">
+      <section>
+        <h2 class="section-title">Services</h2>
+        <div class="wide-card">
+          <p class="service-line">Printing • Copying • Scanning • Faxing • Lamination<br>Mobile Notary • Loan Signing Services</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">How It Works</h2>
+        <div class="how-grid">
+          <div class="card">
+            <p><span class="step-title">1. Send Your Request</span>
+            Email your files and include your order details, including black and white or color, single or double-sided, and preferred timing.</p>
+          </div>
+          <div class="card">
+            <p><span class="step-title">2. Receive Confirmation</span>
+            You’ll receive pricing, availability, and next steps.</p>
+          </div>
+          <div class="card">
+            <p><span class="step-title">3. Payment &amp; Processing</span>
+            Orders are prepared once payment is received.</p>
+          </div>
+          <div class="card">
+            <p><span class="step-title">4. Pickup or Delivery</span>
+            Choose secure pickup or local delivery based on your preference.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Pickup &amp; Delivery</h2>
+        <div class="two-grid">
+          <div class="card">
+            <p><span class="mini-title">Secure Lockbox Pickup</span>
+            Pickup is available by appointment only. After confirmation and payment, you will receive the pickup location, your scheduled pickup time, and a private access code.</p>
+            <p style="margin-top:12px;">All orders are placed in a secure lock box and labeled with your name.</p>
+          </div>
+          <div class="card">
+            <p><span class="mini-title">Local Delivery</span>
+            Delivery is available for an additional fee based on distance. Ideal for convenience and customers who prefer not to pick up.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Pickup Instructions</h2>
+        <div class="wide-card">
+          <p>Take only your labeled envelope.<br>
+          Close the lock box securely after pickup.<br>
+          Text once your order has been collected.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Important Notes</h2>
+        <div class="notes-grid">
+          <div class="card"><p>Address is provided after order confirmation.</p></div>
+          <div class="card"><p>Payment is required before printing.</p></div>
+          <div class="card"><p>Appointments only.</p></div>
+          <div class="card"><p>No walk-ins.</p></div>
+          <div class="card"><p>No in-home service.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Notary &amp; Loan Signing</h2>
+        <div class="wide-card">
+          <p>Mobile notary services are available for everyday documents as well as loan signing appointments.</p>
+          <p style="margin-top:12px;">General notary services are quoted based on the number of notarizations, travel distance, and scheduling needs. Loan signing services are quoted separately based on document type, scanback requirements, and appointment logistics.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Contact</h2>
+        <div class="wide-card">
+          <a href="mailto:hello@alignedprintscan.com"><p>Email:</p>hello@alignedprintscan.com</a><br>
+          <a href="sms:+14693835923"><p>Text:</p>(469)383-5923</a><br>
+          <p class="contact-note">Please text for faster response.</p>
+        </div>
+      </section>
+
+      <div class="footer">
+        Aligned Print &amp; Scan
+        <br>
+        Premium neighborhood document services
+        <br><br>
+        Serving Waxahachie and surrounding areas by appointment
+      </div>
+    </div>
+  </div>
+</body>
+</html>
