@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aligned Print &amp; Scan | Notary Support Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue-1:#050d87;--blue-2:#08125d;--blue-3:#04092b;--gold:#d4af37;--gold-soft:#f3df86;
+  --text:#f8f7f2;--muted:#d5dcff;--muted-2:#aeb9f0;--ink:#152033;--paper:#ffffff;
+  --panel:rgba(255,255,255,0.08);--panel-2:rgba(255,255,255,0.05);--line:rgba(243,223,134,.18);
+  --max:1180px
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);font-family:'Inter',sans-serif;background:
+radial-gradient(circle at top right, rgba(212,175,55,.10), transparent 25%),
+linear-gradient(180deg,#0a1cd9 0%,#08125d 45%,#04092b 100%)}
+body.light-page{color:var(--ink);background:linear-gradient(180deg,#eef3fb 0%,#fff 100%)}
+a{color:inherit}
+.topbar{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(4,9,43,.84);border-bottom:1px solid rgba(255,255,255,.08)}
+body.light-page .topbar{background:rgba(255,255,255,.92);border-bottom:1px solid rgba(21,32,51,.08)}
+.topbar-inner{max-width:var(--max);margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.brand img{width:66px;height:66px;object-fit:contain;display:block}
+.brand-name{display:flex;flex-direction:column;line-height:1.14}
+.brand-name strong{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;letter-spacing:.01em;color:#fff}
+.brand-name span{color:var(--gold-soft);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+body.light-page .brand-name strong{color:var(--blue-2)}
+body.light-page .brand-name span{color:#8c6a16}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.nav a{text-decoration:none;padding:10px 14px;border-radius:999px;font-size:14px;font-weight:700;color:#fff;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)}
+body.light-page .nav a{color:var(--blue-2);background:#fff;border-color:#d9e1ee}
+.nav a.active{background:var(--gold);color:#13254d;border-color:transparent}
+.wrap{max-width:var(--max);margin:0 auto;padding:42px 24px 82px}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:32px;align-items:start}
+.hero-left{padding-top:18px}
+.badge{display:inline-block;margin-bottom:24px;background:rgba(212,175,55,.14);border:1px solid rgba(212,175,55,.32);color:#f4dd96;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+h1{margin:0 0 22px;font-family:'DM Serif Display',serif;font-size:64px;line-height:1.06;color:#fff;max-width:700px;font-weight:400}
+body.light-page h1{color:var(--blue-2)}
+.lead{max-width:700px;color:var(--muted);font-size:20px;line-height:1.8;margin-bottom:12px;font-weight:500}
+body.light-page .lead{color:#35517e}
+.sublead{max-width:670px;color:#f6f1df;font-size:16px;line-height:1.8;font-weight:600;margin-bottom:26px}
+body.light-page .sublead{color:#5a667d}
+.buttons,.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-width:180px;padding:14px 20px;border-radius:14px;text-decoration:none;font-size:15px;font-weight:700;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--gold);color:#13254d}
+.btn-secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
+body.light-page .btn-secondary{background:#fff;border-color:#d9e1ee;color:var(--blue-2)}
+.price-card,.card,.wide-card,.form-card,.summary-card{border-radius:20px;padding:22px}
+.price-card,.card,.wide-card{background:linear-gradient(180deg, rgba(10,28,217,.18), rgba(6,16,168,.10)), var(--panel);border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.24)}
+body.light-page .form-card,body.light-page .summary-card,body.light-page .card,body.light-page .wide-card,body.light-page .price-card{background:#fff;border:1px solid #d8deea;box-shadow:0 18px 44px rgba(22,32,51,.08)}
+.price-card h2,.section-title,.form-card h2,.summary-card h2{margin:0 0 10px;font-family:'DM Serif Display',serif;font-size:34px;color:var(--gold);font-weight:400}
+body.light-page .price-card h2,body.light-page .section-title,body.light-page .form-card h2,body.light-page .summary-card h2{color:var(--blue-2)}
+.price-card p.top{margin:0 0 18px;color:#edf2ff;font-size:14px;line-height:1.75}
+body.light-page .price-card p.top{color:#56637e}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pill{background:var(--panel-2);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px;min-height:74px;display:flex;flex-direction:column;justify-content:center}
+body.light-page .pill{background:#f7f8fc;border-color:#e0e6f0}
+.pill strong{color:#fff;font-size:13px;margin-bottom:4px;display:block}
+.pill span{color:#eef3ff;font-size:13px;font-weight:600;line-height:1.45}
+body.light-page .pill strong{color:var(--ink)}
+body.light-page .pill span{color:#44506a}
+.sections{margin-top:42px;display:grid;gap:18px}
+.section-title{margin:12px 0 12px}
+.card p,.wide-card p{margin:0;color:#f4f7ff;line-height:1.9;font-size:15px;font-weight:500}
+body.light-page .card p,body.light-page .wide-card p{color:#304059}
+.service-line{font-size:16px;font-weight:700;color:#fff;line-height:1.95}
+body.light-page .service-line{color:var(--ink)}
+.how-grid,.two-grid{display:grid;gap:14px}
+.how-grid{grid-template-columns:repeat(4,1fr)}
+.two-grid{grid-template-columns:1fr 1fr}
+.step-title,.mini-title{display:block;margin-bottom:8px;font-size:16px;font-weight:700;color:#fff}
+body.light-page .step-title,body.light-page .mini-title{color:var(--blue-2)}
+.contact-note{margin-top:8px !important;color:#f3e9bf !important;font-size:14px !important;font-weight:600 !important}
+body.light-page .contact-note{color:#8c6a16 !important}
+.footer{margin-top:30px;text-align:center;color:var(--muted-2);font-size:13px;line-height:1.8}
+body.light-page .footer{color:#687593}
+.small-label{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8c6a16;margin-bottom:8px}
+.form-shell{display:grid;grid-template-columns:1.25fr .85fr;gap:24px;align-items:start}
+.summary-card{position:sticky;top:92px}
+.subtle{color:#5d6a84;font-size:15px;line-height:1.7}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field.full{grid-column:1 / -1}
+label{font-weight:700;font-size:14px;color:var(--ink)}
+input,select,textarea{width:100%;border:1px solid #cfd7e3;border-radius:12px;padding:11px 12px;font-size:15px;background:#fff;font-family:'Inter',sans-serif}
+textarea{min-height:94px;resize:vertical}
+.service-card{border:1px solid #d8deea;border-radius:18px;padding:16px;margin-bottom:14px;background:#fbfcff}
+.service-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.service-tag{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;background:#eef3fb;color:var(--blue-2);font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.helper,.tiny{margin-top:6px;color:#6b7280;font-size:12px}
+.hidden{display:none}
+.line-item{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #edf1f7}
+.line-item:last-child{border-bottom:none}
+.amount{font-weight:800;color:var(--ink)}
+.big-total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:12px;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,var(--blue-1),var(--blue-2));color:#fff}
+.big-total strong{font-size:28px}
+.summary-note,.notice-box,.policy-box{padding:14px 16px;border-radius:14px;margin-top:14px;font-size:14px;line-height:1.7}
+.summary-note{background:#eef6ff;border:1px solid #d9e7fb;color:#33527d}
+.notice-box{background:#fff8ea;border:1px solid #eedda7;color:#674d0d}
+.policy-box{background:#f7f8fc;border:1px solid #e0e6f0;color:#44506a}
+.price-list{display:grid;gap:10px;margin-top:12px}
+.price-row{display:flex;justify-content:space-between;gap:14px;padding:10px 12px;background:#f7f8fc;border:1px solid #e0e6f0;border-radius:12px;font-size:14px;color:#2b3950}
+.price-row strong{color:var(--blue-2)}
+@media (max-width:980px){.hero-grid,.form-shell{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr 1fr}h1{font-size:52px}.two-grid{grid-template-columns:1fr}.summary-card{position:static}}
+@media (max-width:640px){.topbar-inner,.wrap{padding-left:16px;padding-right:16px}.brand img{width:56px;height:56px}.brand-name strong{font-size:22px}h1{font-size:42px}.lead{font-size:18px}.price-grid,.form-grid,.how-grid{grid-template-columns:1fr}.section-title,.form-card h2,.summary-card h2,.price-card h2{font-size:30px}.nav{display:none}}
+</style></head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+<a class="brand" href="index.html"><img src="aligned-logo-transparent2.png" alt="Aligned Print & Scan logo"><div class="brand-name"><strong>Aligned Print &amp; Scan</strong><span>Notary Support Services</span></div></a>
+<nav class="nav"><a href="index.html">Home</a><a href="pricing_calculator_aligned_updated.html">Pricing &amp; Order</a><a class="active" href="notary-support.html">Notary Support</a></nav>
+</div></header>
+
+<div class="wrap">
+<section class="hero-grid">
+<div class="hero-left">
+<div class="badge">Same-Day Notary Support Available</div>
+<h1>Notary support that helps you keep moving.</h1>
+<div class="lead">Same-day printing, scan-backs, and courier support for loan signing agents who need dependable local help.</div>
+<div class="sublead">Designed for notaries who want to save time, stay on schedule, and keep signings moving without extra stress.</div>
+<div class="buttons"><a class="btn btn-primary" href="sms:+14693835923">Text for Support</a><a class="btn btn-secondary" href="mailto:hello@alignedprintscan.com?subject=Notary%20Support%20Request">Email a Support Request</a></div>
+</div>
+<aside class="price-card"><h2>Partner Pricing</h2><p class="top">Clean, simple pricing ranges for repeat support and same-day help.</p>
+<div class="price-grid">
+<div class="pill"><strong>Standard Loan Package</strong><span>Up to 200 pages — $50</span></div>
+<div class="pill"><strong>Large Package</strong><span>200–300 pages — $65–$75</span></div>
+<div class="pill"><strong>Scan-Backs</strong><span>$15–$35</span></div>
+<div class="pill"><strong>Courier Delivery</strong><span>Starting at $20</span></div>
+<div class="pill"><strong>Full Service Support</strong><span>$85–$130+</span></div>
+<div class="pill"><strong>Rush / After-Hours</strong><span>+$15–$25 / +$10 per hour</span></div>
+</div></div></aside></section>
+
+<div class="sections">
+<section><h2 class="section-title">Services for Notaries</h2><div class="two-grid">
+<div class="card"><p><span class="mini-title">Loan Package Printing</span>Professional printing of loan documents including borrower and signing copies. Packages are printed, organized, and ready for immediate signing.</p></div>
+<div class="card"><p><span class="mini-title">Scan-Back Services</span>Documents are scanned, merged, and formatted into clean PDFs ready for title company upload.</p></div>
+<div class="card"><p><span class="mini-title">Courier Delivery</span>Time-sensitive drop-off of completed loan packages to FedEx or UPS to help ensure deadlines are met.</p></div>
+<div class="card"><p><span class="mini-title">Same-Day Support</span>Emergency and overflow support for printing, scan-backs, and document drop-offs when your schedule gets tight.</p></div>
+</div></section>
+
+<section><h2 class="section-title">Full Service Support</h2><div class="wide-card"><p>Complete document handling from start to finish — printing, scan-backs, and courier delivery. Designed to help you stay on schedule and move efficiently between signings.</p></div></section>
+<section><h2 class="section-title">Professional Handling</h2><div class="wide-card"><p>All documents are handled with confidentiality and care. Files are printed, organized, and secured from pickup through delivery. Completed documents are kept protected and never shared, ensuring professional and secure handling at every step.</p></div></section>
+<section><h2 class="section-title">Partner With Confidence</h2><div class="wide-card"><p>Trusted by local notaries for reliable, same-day support. Built to help you deliver a seamless signing experience.<br><br>Repeat partnerships, referrals, and shared reviews are welcomed and appreciated.</p></div></section>
+<section><h2 class="section-title">How to Request Support</h2><div class="how-grid">
+<div class="card"><p><span class="step-title">1. Send the file</span>Text or email your file with the needed-by time and service type.</p></div>
+<div class="card"><p><span class="step-title">2. Receive pricing</span>Support pricing and timing are confirmed before work begins.</p></div>
+<div class="card"><p><span class="step-title">3. Payment &amp; processing</span>Once approved, the package is printed, scanned, or routed for drop-off.</p></div>
+<div class="card"><p><span class="step-title">4. Stay on schedule</span>Pick up, receive delivery, or move straight to your next signing.</p></div>
+</div></section>
+<section><h2 class="section-title">Contact</h2><div class="wide-card"><p>Email: <a href="mailto:hello@alignedprintscan.com">hello@alignedprintscan.com</a><br>Text: <a href="sms:+14693835923">(469) 383-5923</a></p><p class="contact-note">Same-day support depends on schedule and file readiness.</p></div></section>
+<div class="footer">Aligned Print &amp; Scan<br>Reliable notary support for Waxahachie and surrounding areas</div>
+</div></div></body></html>
