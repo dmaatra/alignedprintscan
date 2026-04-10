@@ -166,6 +166,7 @@ textarea{min-height:94px;resize:vertical}
 <div class="policy-box"><strong>Accepted payment options:</strong> Zelle, Cash App, Apple Pay, or invoice payment link by request. You can customize these methods before publishing if your business uses different payment platforms.</div>
 
 <div class="cta-row" style="margin-top:14px">
+<button class="btn btn-primary" type="button" id="submitQuoteBtn">Submit Quote Request</button>
 <button class="btn btn-secondary" type="button" id="recalculateBtn">Recalculate Estimate</button>
 <button class="btn btn-secondary" type="button" id="copyBtn">Copy Quote Request</button>
 <button class="btn btn-secondary" type="button" id="emailBtn">Email Quote Request</button>
@@ -347,10 +348,84 @@ document.addEventListener('DOMContentLoaded', function () {
     ].join('\n');
   }
 
+
+  async function submitQuoteRequest() {
+    try {
+      recalc();
+
+      const firstName = $('firstName')?.value.trim() || '';
+      const lastName = $('lastName')?.value.trim() || '';
+      const companyName = $('companyName')?.value.trim() || null;
+      const customerEmail = $('customerEmail')?.value.trim() || '';
+      const customerPhone = $('customerPhone')?.value.trim() || '';
+      const fulfillmentMethod = $('fulfillment')?.value || 'pickup';
+      const deliveryAddress = $('deliveryAddress')?.value.trim() || null;
+      const turnaroundType = $('turnaround')?.value || 'standard';
+      const requestedTime = $('serviceTime')?.value || 'day';
+      const preferredPayment = $('preferredPayment')?.value || 'invoice';
+      const notes = $('notes')?.value.trim() || null;
+
+      if (!firstName || !lastName || !customerEmail || !customerPhone) {
+        alert('Please complete first name, last name, email, and phone number.');
+        return;
+      }
+
+      if ((fulfillmentMethod === 'delivery' || fulfillmentMethod === 'roundtrip' || fulfillmentMethod === 'mobileNotary') && !deliveryAddress) {
+        alert('Please enter the delivery address.');
+        return;
+      }
+
+      const totalText = document.querySelector('.big-total strong')?.textContent || '$0';
+      const approximateTotal = Number(totalText.replace(/[^0-9.]/g, '')) || 0;
+
+      const { data: customerData, error: customerError } = await supabaseClient
+        .from('customers')
+        .insert([
+          {
+            first_name: firstName,
+            last_name: lastName,
+            company_name: companyName,
+            email: customerEmail,
+            phone: customerPhone
+          }
+        ])
+        .select()
+        .single();
+
+      if (customerError) throw customerError;
+
+      const { error: orderError } = await supabaseClient
+        .from('orders')
+        .insert([
+          {
+            customer_id: customerData.id,
+            fulfillment_method: fulfillmentMethod,
+            delivery_address: deliveryAddress,
+            turnaround_type: turnaroundType,
+            requested_time: requestedTime,
+            preferred_payment: preferredPayment,
+            approximate_total: approximateTotal,
+            final_total: null,
+            status: 'new',
+            notes: notes
+          }
+        ]);
+
+      if (orderError) throw orderError;
+
+      alert('Quote request submitted successfully.');
+      resetForm();
+    } catch (error) {
+      console.error('Supabase submit error:', error);
+      alert('Something went wrong submitting your quote request. Check the browser console and your Supabase policies.');
+    }
+  }
+
   function copySummary(){ navigator.clipboard.writeText(window.currentRequestSummary || '').then(() => alert('Request summary copied.')); }
   function emailSummary(){ const subject = encodeURIComponent('Aligned Print & Scan Quote Request'); const body = encodeURIComponent(window.currentRequestSummary || ''); window.location.href = `mailto:hello@alignedprintscan.com?subject=${subject}&body=${body}`; }
   function resetForm(){ $('firstName').value=''; $('lastName').value=''; $('companyName').value=''; $('customerEmail').value=''; $('customerPhone').value=''; $('fulfillment').value='pickup'; if($('deliveryAddress')) $('deliveryAddress').value=''; $('turnaround').value='standard'; $('serviceTime').value='day'; $('preferredPayment').value='zelle'; $('notes').value=''; servicesContainer.innerHTML=''; updateFulfillment(); addService(); }
 
+  $('submitQuoteBtn').addEventListener('click', submitQuoteRequest);
   $('addServiceBtn').addEventListener('click', addService);
   $('recalculateBtn').addEventListener('click', recalc);
   $('copyBtn').addEventListener('click', copySummary);
@@ -376,6 +451,14 @@ document.getElementById("fulfillment").addEventListener("change", function() {
     helper.innerHTML = "";
   }
 });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "PASTE_YOUR_PROJECT_URL_HERE";
+const SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
 
 </body></html>
