@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           const { error: uploadError } = await supabaseClient
             .storage
-            .from('order-files')
+            .from('order_files')
             .upload(storagePath, file, { upsert: false });
 
           if (uploadError) throw uploadError;
