@@ -123,6 +123,11 @@
                             display:grid;
                             grid-template-columns:1.08fr .92fr;
                             gap:32px;align-items:start}
+
+.hero-grid{position:relative;overflow:hidden;border-radius:28px;padding:28px}
+.hero-grid::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(5,13,135,.72), rgba(4,9,43,.88)), url('hero-home.jpg') center/cover no-repeat;z-index:0}
+.hero-grid > *{position:relative;z-index:1}
+
                             
                         .hero-left{
                             padding-top:18px}
@@ -367,7 +372,7 @@
                                                             
                         <h2>Our Services</h2>
                                                                 
-                        <p class="top"><p class="top">Specialized support for signing agents and general notary clients, with document services handled professionally from start to finish.</p>
+                        <p class="top">Specialized support for signing agents and general notary clients, with document services handled professionally from start to finish.</p>
                                                                 
                         <div class="price-grid">
                                 
