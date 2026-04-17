@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aligned Print &amp; Scan | Pricing &amp; Order</title>
+<title>Aligned Print &amp; Scan | Pricing, Ordering &amp; Service Requests</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -31,469 +31,473 @@ body.light-page .brand-name span{color:#8c6a16}
 body.light-page .nav a{color:var(--blue-2);background:#fff;border-color:#d9e1ee}
 .nav a.active{background:var(--gold);color:#13254d;border-color:transparent}
 .wrap{max-width:var(--max);margin:0 auto;padding:42px 24px 82px}
-.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:32px;align-items:start}
-.hero-left{padding-top:18px}
-.badge{display:inline-block;margin-bottom:24px;background:rgba(212,175,55,.14);border:1px solid rgba(212,175,55,.32);color:#f4dd96;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-h1{margin:0 0 22px;font-family:'DM Serif Display',serif;font-size:64px;line-height:1.06;color:#fff;max-width:700px;font-weight:400}
-body.light-page h1{color:var(--blue-2)}
-.lead{max-width:700px;color:var(--muted);font-size:20px;line-height:1.8;margin-bottom:12px;font-weight:500}
-body.light-page .lead{color:#35517e}
-.sublead{max-width:670px;color:#f6f1df;font-size:16px;line-height:1.8;font-weight:600;margin-bottom:26px}
-body.light-page .sublead{color:#5a667d}
-.buttons,.cta-row{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-width:180px;padding:14px 20px;border-radius:14px;text-decoration:none;font-size:15px;font-weight:700;border:1px solid transparent;cursor:pointer}
-.btn-primary{background:var(--gold);color:#13254d}
-.btn-secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
-body.light-page .btn-secondary{background:#fff;border-color:#d9e1ee;color:var(--blue-2)}
 .price-card,.card,.wide-card,.form-card,.summary-card{border-radius:20px;padding:22px}
 .price-card,.card,.wide-card{background:linear-gradient(180deg, rgba(10,28,217,.18), rgba(6,16,168,.10)), var(--panel);border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.24)}
 body.light-page .form-card,body.light-page .summary-card,body.light-page .card,body.light-page .wide-card,body.light-page .price-card{background:#fff;border:1px solid #d8deea;box-shadow:0 18px 44px rgba(22,32,51,.08)}
 .price-card h2,.section-title,.form-card h2,.summary-card h2{margin:0 0 10px;font-family:'DM Serif Display',serif;font-size:34px;color:var(--gold);font-weight:400}
 body.light-page .price-card h2,body.light-page .section-title,body.light-page .form-card h2,body.light-page .summary-card h2{color:var(--blue-2)}
-.price-card p.top{margin:0 0 18px;color:#edf2ff;font-size:14px;line-height:1.75}
-body.light-page .price-card p.top{color:#56637e}
-.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.pill{background:var(--panel-2);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px;min-height:74px;display:flex;flex-direction:column;justify-content:center}
-body.light-page .pill{background:#f7f8fc;border-color:#e0e6f0}
-.pill strong{color:#fff;font-size:13px;margin-bottom:4px;display:block}
-.pill span{color:#eef3ff;font-size:13px;font-weight:600;line-height:1.45}
-body.light-page .pill strong{color:var(--ink)}
-body.light-page .pill span{color:#44506a}
-.sections{margin-top:42px;display:grid;gap:18px}
-.section-title{margin:12px 0 12px}
-.card p,.wide-card p{margin:0;color:#f4f7ff;line-height:1.9;font-size:15px;font-weight:500}
-body.light-page .card p,body.light-page .wide-card p{color:#304059}
-.service-line{font-size:16px;font-weight:700;color:#fff;line-height:1.95}
-body.light-page .service-line{color:var(--ink)}
-.how-grid,.two-grid{display:grid;gap:14px}
-.how-grid{grid-template-columns:repeat(4,1fr)}
-.two-grid{grid-template-columns:1fr 1fr}
-.step-title,.mini-title{display:block;margin-bottom:8px;font-size:16px;font-weight:700;color:#fff}
-body.light-page .step-title,body.light-page .mini-title{color:var(--blue-2)}
-.contact-note{margin-top:8px !important;color:#f3e9bf !important;font-size:14px !important;font-weight:600 !important}
-body.light-page .contact-note{color:#8c6a16 !important}
-.footer{margin-top:30px;text-align:center;color:var(--muted-2);font-size:13px;line-height:1.8}
-body.light-page .footer{color:#687593}
-.small-label{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8c6a16;margin-bottom:8px}
+.wrap-top{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;margin-bottom:28px}
+.prices-wide{margin-bottom:32px}
+.price-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.price-group{height:100%}
+.subservice-box{margin-top:14px;padding:14px;border:1px solid #e0e6f0;border-radius:14px;background:#fff}
+.subservice-box h4{margin:0 0 10px;color:var(--blue-2);font-size:16px}
+.section-note{margin-top:10px;color:#5d6a84;font-size:13px;line-height:1.7}
+.badge-blue{
+    display:inline-block;
+    margin-bottom:24px;
+    background:linear-gradient(180deg, rgba(10,28,217,.25), rgba(6,16,168,.15));
+    border:1px solid rgba(174,185,240,.25);
+    color:#eef3ff;
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+}
+h1{margin:0 0 22px;font-family:'DM Serif Display',serif;font-size:58px;line-height:1.06;color:#fff;max-width:700px;font-weight:400}
+body.light-page h1{color:var(--blue-2)}
+.lead{max-width:700px;color:var(--muted);font-size:20px;line-height:1.8;margin-bottom:12px;font-weight:500}
+body.light-page .lead{color:#35517e}
+.sublead{max-width:670px;color:#5a667d;font-size:16px;line-height:1.8;font-weight:600;margin-bottom:0}
+.buttons,.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-width:180px;padding:14px 20px;border-radius:14px;text-decoration:none;font-size:15px;font-weight:700;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--gold);color:#13254d}
+.btn-secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
+body.light-page .btn-secondary{background:#fff;border-color:#d9e1ee;color:var(--blue-2)}
 .form-shell{display:grid;grid-template-columns:1.25fr .85fr;gap:24px;align-items:start}
 .summary-card{position:sticky;top:92px}
 .subtle{color:#5d6a84;font-size:15px;line-height:1.7}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field.full{grid-column:1 / -1}
 label{font-weight:700;font-size:14px;color:var(--ink)}
 input,select,textarea{width:100%;border:1px solid #cfd7e3;border-radius:12px;padding:11px 12px;font-size:15px;background:#fff;font-family:'Inter',sans-serif}
-textarea{min-height:94px;resize:vertical}
-.service-card{border:1px solid #d8deea;border-radius:18px;padding:16px;margin-bottom:14px;background:#fbfcff}
-.service-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
-.service-tag{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;background:#eef3fb;color:var(--blue-2);font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
-.helper,.tiny{margin-top:6px;color:#6b7280;font-size:12px}
-.hidden{display:none}
+textarea{min-height:100px;resize:vertical}
+.helper,.tiny{margin-top:6px;color:#6b7280;font-size:12px;line-height:1.6}
+.summary-note,.notice-box,.policy-box{padding:14px 16px;border-radius:14px;margin-top:14px;font-size:14px;line-height:1.7}
+.summary-note{background:#eef6ff;border:1px solid #d9e7fb;color:#33527d}
+.notice-box{background:#fff8ea;border:1px solid #eedda7;color:#674d0d}
+.policy-box{background:#f7f8fc;border:1px solid #e0e6f0;color:#44506a}
+.price-list{display:grid;gap:12px;margin-top:18px}
+.price-group{border:1px solid #e0e6f0;border-radius:16px;padding:16px;background:#fbfcff}
+.price-group h3{margin:0 0 8px;color:var(--blue-2);font-size:18px}
+.price-group p{margin:0 0 12px;color:#50617c;font-size:14px;line-height:1.7}
+.price-row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid #edf1f7;font-size:14px;color:#2b3950}
+.price-row:last-child{border-bottom:none}
+.price-row strong{color:var(--blue-2)}
+.service-section{border:1px solid #d8deea;border-radius:18px;padding:18px;margin-top:18px;background:#fbfcff}
+.service-section h3{margin:0 0 6px;font-size:20px;color:var(--blue-2)}
+.service-section p{margin:0 0 14px;color:#50617c;line-height:1.75;font-size:14px}
+.inline-checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-top:4px}
+.check-item{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid #e0e6f0;border-radius:12px;background:#fff}
+.check-item input{width:auto;margin-top:3px}
+.hidden{display:none !important}
 .line-item{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #edf1f7}
 .line-item:last-child{border-bottom:none}
 .amount{font-weight:800;color:var(--ink)}
 .big-total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:12px;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,var(--blue-1),var(--blue-2));color:#fff}
 .big-total strong{font-size:28px}
-.summary-note,.notice-box,.policy-box{padding:14px 16px;border-radius:14px;margin-top:14px;font-size:14px;line-height:1.7}
-.summary-note{background:#eef6ff;border:1px solid #d9e7fb;color:#33527d}
-.notice-box{background:#fff8ea;border:1px solid #eedda7;color:#674d0d}
-.policy-box{background:#f7f8fc;border:1px solid #e0e6f0;color:#44506a}
-.price-list{display:grid;gap:10px;margin-top:12px}
-.price-row{display:flex;justify-content:space-between;gap:14px;padding:10px 12px;background:#f7f8fc;border:1px solid #e0e6f0;border-radius:12px;font-size:14px;color:#2b3950}
-.price-row strong{color:var(--blue-2)}
-@media (max-width:980px){.hero-grid,.form-shell{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr 1fr}h1{font-size:52px}.two-grid{grid-template-columns:1fr}.summary-card{position:static}}
-@media (max-width:640px){.topbar-inner,.wrap{padding-left:16px;padding-right:16px}.brand img{width:56px;height:56px}.brand-name strong{font-size:22px}h1{font-size:42px}.lead{font-size:18px}.price-grid,.form-grid,.how-grid{grid-template-columns:1fr}.section-title,.form-card h2,.summary-card h2,.price-card h2{font-size:30px}.nav{display:none}}
+.footer{margin-top:30px;text-align:center;color:#687593;font-size:13px;line-height:1.8}
+@media (max-width:980px){.wrap-top,.form-shell,.price-columns{grid-template-columns:1fr}.summary-card{position:static}h1{font-size:50px}}
+@media (max-width:640px){.topbar-inner,.wrap{padding-left:16px;padding-right:16px}.brand img{width:56px;height:56px}.brand-name strong{font-size:22px}h1{font-size:40px}.lead{font-size:18px}.form-grid,.inline-checks,.price-columns{grid-template-columns:1fr}.nav{display:none}.price-card h2,.form-card h2,.summary-card h2{font-size:30px}}
 </style></head>
 <body class="light-page">
 <header class="topbar"><div class="topbar-inner">
-<a class="brand" href="index.html"><img src="aligned-logo-transparent2.png" alt="Aligned Print & Scan logo"><div class="brand-name"><strong>Aligned Print &amp; Scan</strong><span>Pricing • Ordering • Estimates</span></div></a>
-<nav class="nav"><a href="index.html">Home</a><a class="active" href="pricing-calculator-aligned.html">Pricing &amp; Order</a><a href="notary-support.html">Notary Support</a></nav>
+<a class="brand" href="index.html"><img src="aligned-logo-transparent2.png" alt="Aligned Print &amp; Scan logo"><div class="brand-name"><strong>Aligned Print &amp; Scan</strong><span>Notary Support • Mobile Notary • Document Services</span></div></a>
+<nav class="nav"><a href="index.html">Home</a><a href="notary-support.html">Notary Support</a><a href="mobile-notary.html">Mobile Notary</a><a class="active" href="pricing-calculator-aligned.html">Pricing &amp; Order</a></nav>
 </div></header>
 
-<div class="wrap"><section class="form-shell">
-<main class="form-card">
-<h2>Request a Quote</h2>
-<p class="subtle">Upload your files, build your estimate, and submit your request. Use the form below to build your estimate. Your total is approximate until your final quote is reviewed and approved.</p>
+<div class="wrap">
+  
+<section class="wrap-top">
+    <div>
+      <div class="badge badge-blue">Service Requests & Estimates</div>
+      <h1>Request the service you need in one place.</h1>
+      <div class="lead">Use this page to request notary support, mobile notary service, or document handling. Build an estimate, upload your files, and submit accurate contact and address details for review.</div>
+      <div class="sublead">Standard scheduling during business hours allows for the most efficient service and routing. Same-day, priority, and after-hours requests are available based on availability and may include an additional fee. Estimates are approximate and subject to final review before work begins.</div>
+    </div>
+  </section>
 
-<div class="small-label">Starting Prices</div>
-<div class="price-list">
-<div class="price-row"><span>B&amp;W Letter, single-sided</span><strong>$0.25 / page</strong></div>
-<div class="price-row"><span>B&amp;W Letter, double-sided</span><strong>$0.35 / page</strong></div>
-<div class="price-row"><span>Color Letter, single-sided</span><strong>$0.50 / page</strong></div>
-<div class="price-row"><span>Color Letter, double-sided</span><strong>$0.65 / page</strong></div>
-<div class="price-row"><span>Legal paper upcharge</span><strong>+$0.10 / page</strong></div>
-<div class="price-row"><span>Resume paper</span><strong>+$0.25 / page</strong></div>
-<div class="price-row"><span>Cardstock</span><strong>+$0.40 / page</strong></div>
-<div class="price-row"><span>Colored paper</span><strong>+$0.15 / page</strong></div>
-<div class="price-row"><span>Scanned PDF</span><strong>$5 up to 5 pages, then $1/page after</strong></div>
-<div class="price-row"><span>Print + Scan add-on</span><strong>Print pricing + scan pricing</strong></div>
-<div class="price-row"><span>Formatting / PDF Merge</span><strong>$5 each</strong></div>
-<div class="price-row"><span>Lamination</span><strong>$3 per sheet</strong></div>
-<div class="price-row"><span>Mobile service &amp; delivery</span><strong>Starting at $20 (within 5 miles)</strong></div>
-<div class="price-row"><span>Round-trip pickup &amp; return</span><strong>Two delivery fees</strong></div>
-<div class="price-row"><span>Rush (1–3 hours)</span><strong>+$20</strong></div>
-<div class="price-row"><span>Priority rush (ASAP)</span><strong>+$30</strong></div>
-<div class="price-row"><span>After-hours 6–9 PM</span><strong>+$20</strong></div>
-<div class="price-row"><span>After-hours 9–10 PM</span><strong>+$30</strong></div>
-<div class="price-row"><span>After-hours 10–11 PM</span><strong>+$40</strong></div>
-<div class="price-row"><span>After-hours 11 PM+</span><strong>+$50</strong></div>
-<div class="price-row"><span>Notary per signature</span><strong>$10</strong></div>
+  <section class="price-card prices-wide">
+    <h2>Starting Prices</h2>
+    <div class="price-columns">
+      <div class="price-group">
+        <h3>Notary Support</h3>
+        <p>For signing agents who need local document handling before and after the appointment.</p>
+        <div class="price-row"><span>150–200 page packet printing</span><strong>Starting at $25</strong></div>
+        <div class="price-row"><span>201–250 page packet printing</span><strong>Starting at $35</strong></div>
+        <div class="price-row"><span>251+ page packet printing</span><strong>Starting at $45+</strong></div>
+        <div class="price-row"><span>Printed package delivery</span><strong>Starting at $25</strong></div>
+        <div class="price-row"><span>Signed document pickup</span><strong>Starting at $20</strong></div>
+        <div class="price-row"><span>Scan-backs</span><strong>Starting at $15</strong></div>
+        <div class="price-row"><span>Courier drop-off after scan-backs</span><strong>Starting at $20</strong></div>
+        <div class="price-row"><span>Full-service support bundle</span><strong>Starting at $75</strong></div>
+        <div class="section-note">Standad support generally means service needed with 24+ hours advanced notice (scheduled). Same-day support generally means service needed with less than 24 hours of notice, but more than 4 hours of notice. Priority rush is support service needed within 4 hours of notice. All requests are based on timing, route availability, and workload.</div>
+      </div>
+      <div class="price-group">
+        <h3>Mobile Notary</h3>
+        <p>For general notary work including acknowledgements, jurats, affidavits, powers of attorney, and similar qualifying documents.</p>
+        <div class="price-row"><span>Notarization</span><strong>$10 per signature</strong></div>
+        <div class="price-row"><span>Mobile travel fee</span><strong>Starting at $20</strong></div>
+        <div class="price-row"><span>Print add-on</span><strong>Standard print rates</strong></div>
+        <div class="price-row"><span>Scan add-on</span><strong>Standard scan rates</strong></div>
+        <div class="price-row"><span>Copy add-on</span><strong>Standard copy rates</strong></div>
+        <div class="price-row"><span>Rush / after-hours appointments</span><strong>Additional fee may apply</strong></div>
+        <div class="section-note">Standard scheduling during business hours is recommended. Same-day, priority, and after-hours requests are based on timing, route availability, and workload.</div>
+      </div>
+      <div class="price-group">
+        <h3>Document Services</h3>
+        <p>For clients who need print, scan, copy, formatting, or lamination without notary support.</p>
+        <div class="price-row"><span>B&amp;W letter, single-sided</span><strong>$0.25 / page</strong></div>
+        <div class="price-row"><span>B&amp;W letter, double-sided</span><strong>$0.35 / page</strong></div>
+        <div class="price-row"><span>Color letter, single-sided</span><strong>$0.50 / page</strong></div>
+        <div class="price-row"><span>Color letter, double-sided</span><strong>$0.65 / page</strong></div>
+        <div class="price-row"><span>Scanned PDF</span><strong>$5 up to 5 pages, then $1/page after</strong></div>
+        <div class="price-row"><span>Formatting / PDF merge</span><strong>$5 each</strong></div>
+        <div class="price-row"><span>Lamination</span><strong>$3 per sheet</strong></div>
+        <div class="price-row"><span>Delivery or mobile fulfillment</span><strong>Starting at $20</strong></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="form-shell">
+    <main class="form-card">
+      <h2>Request a Quote</h2>
+      <p class="subtle">Start by selecting the service type. The form will show the fields needed for that request so you can submit accurate names, phone numbers, email addresses, service location details, and supporting files.</p>
+
+      <div class="notice-box"><strong>Contact accuracy matters:</strong> Please provide the correct customer name, signer name if applicable, phone number, email address, and service address so routing, scheduling, and quote confirmation can be handled correctly.</div>
+
+      <div class="form-grid" style="margin-top:16px">
+        <div class="field"><label for="serviceCategory">Service type</label><select id="serviceCategory"><option value="notarySupport">Notary Support</option><option value="mobileNotary">Mobile Notary</option><option value="documentServices">Document Services</option></select></div>
+        <div class="field"><label for="serviceTime">Requested time window</label><select id="serviceTime"><option value="day">Before 7 PM</option><option value="evening">After 7 PM</option><option value="late">After 9 PM</option></select></div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field"><label for="customerFirstName">First name</label><input id="customerFirstName" type="text" placeholder="Enter first name"></div>
+        <div class="field"><label for="customerLastName">Last name</label><input id="customerLastName" type="text" placeholder="Enter last name"></div>
+        <div class="field full"><label for="signerNames">Signer name(s) as listed on ID (if applicable)</label><textarea id="signerNames" placeholder="Enter each signer name exactly as shown on ID. For multiple signers, list one per line."></textarea><div class="helper">For general notary work with more than one signer, list every signer exactly as shown on their identification.</div></div>
+        <div class="field"><label for="companyName">Company name (optional)</label><input id="companyName" type="text" placeholder="Enter company name if applicable"></div>
+        <div class="field"><label for="customerPhone">Phone number</label><input id="customerPhone" type="tel" placeholder="Enter a direct phone number"></div>
+        <div class="field"><label for="customerEmail">Email address</label><input id="customerEmail" type="email" placeholder="Enter a valid email address"></div>
+        <div class="field full"><label for="serviceAddress">Service address</label><input id="serviceAddress" type="text" placeholder="Enter the service, appointment, delivery, or pickup address as accurately as possible"></div>
+        <div class="field"><label for="cityArea">City / area</label><input id="cityArea" type="text" placeholder="Example: Waxahachie, Midlothian, Red Oak"></div>
+        <div class="field"><label for="requestedDate">Requested date</label><input id="requestedDate" type="date"></div>
+      </div>
+
+      <div class="field full"><label for="generalUpload">Upload file(s)</label><input id="generalUpload" type="file" multiple><div class="helper">Upload supporting documents, print files, or request attachments here. In this static HTML version, upload is visual until connected to your backend.</div></div>
+
+      <section id="notarySupportSection" class="service-section">
+        <h3>Notary Support Request</h3>
+        <p>Use this section for signing-agent support. Services are scheduled in service windows based on availability. Same-day and time-sensitive requests may be available for an additional fee.</p>
+        <div class="form-grid">
+          <div class="field"><label for="packetTier">Loan package printing</label><select id="packetTier"><option value="none">No printing needed</option><option value="tier25">150–200 page packet — starting at $25</option><option value="tier35">201–250 page packet — starting at $35</option><option value="tier45">251+ page packet — starting at $45+</option></select><div class="helper">Pricing is based on approximate file size and includes two printed sets unless otherwise requested.</div></div>
+          <div class="field"><label for="supportTurnaround">Support Timing</label><select id="supportTurnaround"><option value="standard">Standard scheduled support (24+ hours recommended)</option><option value="rush">Same-day support request (less than 24 hours)</option><option value="priority">Priority support (within 4 hours, when available)</option></select></div>
+        </div>
+        <div class="inline-checks">
+          <label class="check-item"><input type="checkbox" id="supportDelivery"><span><strong>Printed package delivery</strong><br>Starting at $25</span></label>
+          <label class="check-item"><input type="checkbox" id="supportPickup"><span><strong>Signed document pickup</strong><br>Starting at $20</span></label>
+          <label class="check-item"><input type="checkbox" id="supportScanbacks"><span><strong>Scan-backs</strong><br>Starting at $15</span></label>
+          <label class="check-item"><input type="checkbox" id="supportCourier"><span><strong>Courier drop-off after scan-backs</strong><br>Starting at $20</span></label>
+          <label class="check-item"><input type="checkbox" id="supportBundle"><span><strong>Full-service support bundle</strong><br>Starting at $75</span></label>
+        </div>
+        <div class="field full" style="margin-top:14px"><label for="supportNotes">Support request notes</label><textarea id="supportNotes" placeholder="Add appointment timing, carrier needs, title instructions, signer coordination notes, or anything important for the assignment."></textarea></div>
+      </section>
+
+      <section id="mobileNotarySection" class="service-section hidden">
+        <h3>Mobile Notary Request</h3>
+        <p>Use this section for general notary work. Travel, notarization count, and requested document handling add-ons are used to build your approximate estimate.</p><div class="notice-box">Same-day mobile notary appointments may be available during standard business hours based on schedule and location. Priority appointments within 2–4 hours and after-hours appointments are premium scheduling options.</div>
+        <div class="form-grid">
+          <div class="field"><label for="mobileDocType">Document type</label><select id="mobileDocType"><option value="acknowledgement">Acknowledgement</option><option value="jurat">Jurat</option><option value="affidavit">Affidavit</option><option value="poa">Power of Attorney</option><option value="consent">Consent Form</option><option value="sworn">Sworn Statement</option><option value="other">Other qualifying document</option></select></div>
+          <div class="field"><label for="notaryCount">Number of signatures</label><input id="notaryCount" type="number" min="0" value="1"></div>
+          <div class="field"><label for="mobileTurnaround">Appointment timing</label><select id="mobileTurnaround"><option value="standard">Standard appointment</option><option value="sameDay">Same-day appointment</option><option value="priority">Priority appointment (within 2–4 hours, when available)</option></select></div>
+          <div class="field"><label for="mobileTravel">Mobile travel fee</label><select id="mobileTravel"><option value="base">Starting at $20</option><option value="extended">Extended route — final quote review</option></select></div>
+        </div>
+        <div class="inline-checks">
+          <label class="check-item"><input type="checkbox" id="mnPrint"><span><strong>Print add-on</strong><br>Use standard print rates for documents needed with the appointment</span></label>
+          <label class="check-item"><input type="checkbox" id="mnScan"><span><strong>Scan add-on</strong><br>Use standard scan rates for documents scanned after the appointment</span></label>
+          <label class="check-item"><input type="checkbox" id="mnCopy"><span><strong>Copy add-on</strong><br>Use standard copy rates for extra sets or reproduced documents</span></label>
+        </div>
+
+        <div id="mnPrintFields" class="subservice-box hidden">
+          <h4>Print Add-On Details</h4>
+          <div class="form-grid">
+            <div class="field"><label for="mnPrintPages">Pages to print</label><input id="mnPrintPages" type="number" min="0" value="0"></div>
+            <div class="field"><label for="mnPrintCopies">Sets / copies</label><input id="mnPrintCopies" type="number" min="1" value="1"></div>
+            <div class="field"><label for="mnPrintMode">Print mode</label><select id="mnPrintMode"><option value="bw">Black &amp; White</option><option value="color">Color</option></select></div>
+            <div class="field"><label for="mnPrintSides">Single or double-sided</label><select id="mnPrintSides"><option value="single">Single-sided</option><option value="double">Double-sided</option></select></div>
+            <div class="field"><label for="mnPrintSize">Paper size</label><select id="mnPrintSize"><option value="letter">Letter</option><option value="legal">Legal</option></select></div>
+            <div class="field"><label for="mnPrintPaperType">Paper type</label><select id="mnPrintPaperType"><option value="standard">Standard white</option><option value="resume">Resume paper</option><option value="cardstock">Cardstock</option><option value="colorPaper">Colored paper</option></select></div>
+          </div>
+        </div>
+
+        <div id="mnScanFields" class="subservice-box hidden">
+          <h4>Scan Add-On Details</h4>
+          <div class="form-grid">
+            <div class="field"><label for="mnScanPages">Pages to scan</label><input id="mnScanPages" type="number" min="0" value="0"></div>
+          </div>
+        </div>
+
+        <div id="mnCopyFields" class="subservice-box hidden">
+          <h4>Copy Add-On Details</h4>
+          <div class="form-grid">
+            <div class="field"><label for="mnCopyPages">Pages to copy</label><input id="mnCopyPages" type="number" min="0" value="0"></div>
+            <div class="field"><label for="mnCopySets">Sets / copies</label><input id="mnCopySets" type="number" min="1" value="1"></div>
+            <div class="field"><label for="mnCopyMode">Copy mode</label><select id="mnCopyMode"><option value="bw">Black &amp; White</option><option value="color">Color</option></select></div>
+            <div class="field"><label for="mnCopySides">Single or double-sided</label><select id="mnCopySides"><option value="single">Single-sided</option><option value="double">Double-sided</option></select></div>
+            <div class="field"><label for="mnCopySize">Paper size</label><select id="mnCopySize"><option value="letter">Letter</option><option value="legal">Legal</option></select></div>
+            <div class="field"><label for="mnCopyPaperType">Paper type</label><select id="mnCopyPaperType"><option value="standard">Standard white</option><option value="resume">Resume paper</option><option value="cardstock">Cardstock</option><option value="colorPaper">Colored paper</option></select></div>
+          </div>
+        </div>
+
+        <div class="form-grid" style="margin-top:14px">
+          <div class="field"><label for="idType">Type of ID presented</label><select id="idType"><option value="unspecified">Select ID type</option><option value="driver">Driver's License</option><option value="state">State ID</option><option value="passport">Passport</option><option value="military">Military ID</option><option value="other">Other acceptable ID</option></select></div>
+          <div class="field"><label for="signerCount">Number of signers</label><input id="signerCount" type="number" min="1" value="1"></div>
+        </div>
+        <div class="field full"><label>Appointment readiness checklist</label>
+          <div class="inline-checks">
+            <label class="check-item"><input type="checkbox" id="docsReady"><span><strong>Required documents are ready</strong><br>Documents are complete and available for the appointment</span></label>
+            <label class="check-item"><input type="checkbox" id="validIdReady"><span><strong>Signer has non-expired ID</strong><br>Each signer will present acceptable unexpired identification</span></label>
+            <label class="check-item"><input type="checkbox" id="witnessNeeded"><span><strong>Witness is required</strong><br>A witness may be required for this document</span></label>
+            <label class="check-item"><input type="checkbox" id="witnessReady"><span><strong>Witness has non-expired ID</strong><br>If a witness is required, they will arrive with acceptable unexpired ID</span></label>
+          </div>
+        </div>
+        <div class="field full" style="margin-top:14px"><label for="mobileNotes">Mobile notary notes</label><textarea id="mobileNotes" placeholder="Add appointment notes, signer details, witness notes, parking or entry instructions, or requested document add-ons."></textarea></div>
+      </section>
+
+      <section id="documentServicesSection" class="service-section hidden">
+        <h3>Document Services Request</h3>
+        <p>Use this section for print, scan, copy, merge, formatting, or lamination without notary support. Limited pickup availability is by approval.</p>
+        <div class="form-grid">
+          <div class="field"><label for="docServiceType">Primary service</label><select id="docServiceType"><option value="print">Printing</option><option value="scan">Scanned PDF</option><option value="printscan">Print + Scanned PDF copy</option><option value="format">Formatting / PDF Merge</option><option value="lamination">Lamination</option><option value="copy">Copies / document reproduction</option></select></div>
+          <div class="field"><label for="docFulfillment">Service fulfillment</label><select id="docFulfillment"><option value="delivery">Delivery</option><option value="mobile">Mobile service</option><option value="limitedPickup">Limited pickup availability by approval</option></select></div>
+          <div class="field"><label for="docPages">Pages</label><input id="docPages" type="number" min="0" value="0"></div>
+          <div class="field"><label for="docCopies">Copies / sets</label><input id="docCopies" type="number" min="1" value="1"></div>
+          <div class="field"><label for="docMode">Print mode</label><select id="docMode"><option value="bw">Black &amp; White</option><option value="color">Color</option></select></div>
+          <div class="field"><label for="docSides">Single or double-sided</label><select id="docSides"><option value="single">Single-sided</option><option value="double">Double-sided</option></select></div>
+          <div class="field"><label for="docSize">Paper size</label><select id="docSize"><option value="letter">Letter</option><option value="legal">Legal</option></select></div>
+          <div class="field"><label for="docPaperType">Paper type</label><select id="docPaperType"><option value="standard">Standard white</option><option value="resume">Resume paper</option><option value="cardstock">Cardstock</option><option value="colorPaper">Colored paper</option></select></div>
+          <div class="field"><label for="docScanPages">Pages to scan</label><input id="docScanPages" type="number" min="0" value="0"></div>
+          <div class="field"><label for="docFormatCount">Formatting / merge tasks</label><input id="docFormatCount" type="number" min="0" value="0"></div>
+          <div class="field"><label for="docLaminationCount">Sheets to laminate</label><input id="docLaminationCount" type="number" min="0" value="0"></div>
+          <div class="field"><label for="docTurnaround">Turnaround</label><select id="docTurnaround"><option value="standard">Standard</option><option value="rush">Rush (1–3 hours)</option><option value="priority">Priority / ASAP</option></select></div>
+        </div>
+        <div class="field full"><label>Additional services needed</label>
+          <div class="inline-checks">
+            <label class="check-item"><input type="checkbox" id="docAddScan"><span><strong>Add scan service</strong><br>Include scanned PDF service with this request</span></label>
+            <label class="check-item"><input type="checkbox" id="docAddFormat"><span><strong>Add formatting / merge</strong><br>Include formatting or PDF merge support</span></label>
+            <label class="check-item"><input type="checkbox" id="docAddLamination"><span><strong>Add lamination</strong><br>Include lamination for qualifying documents</span></label>
+            <label class="check-item"><input type="checkbox" id="docAddDelivery"><span><strong>Add delivery or mobile fulfillment</strong><br>Final fulfillment is based on approval and route availability</span></label>
+          </div>
+        </div>
+        <div class="field full"><label for="documentNotes">Document service notes</label><textarea id="documentNotes" placeholder="Add file notes, special instructions, paper preferences, or fulfillment details."></textarea></div>
+      </section>
+
+      <div class="policy-box"><strong>Identity &amp; accuracy acknowledgement:</strong> <label style="font-weight:500;color:inherit"><input id="accuracyCheck" type="checkbox" style="width:auto;margin-right:8px">I confirm the names, address, phone number, email address, and request details entered above are accurate to the best of my knowledge.</label></div>
+
+      <div class="cta-row" style="margin-top:14px">
+        <button class="btn btn-secondary" type="button" id="recalculateBtn">Recalculate Estimate</button>
+        <button class="btn btn-secondary" type="button" id="copyBtn">Copy Quote Request</button>
+        <button class="btn btn-secondary" type="button" id="emailBtn">Email Quote Request</button>
+        <button class="btn btn-secondary" type="button" id="printBtn">Print / Save PDF</button>
+        <button class="btn btn-secondary" type="button" id="resetBtn">Reset</button>
+      </div>
+    </main>
+
+    <aside class="summary-card">
+      <h2>Estimate Summary</h2>
+      <p class="subtle">Approximate total pending final review, approval, and payment.</p>
+      <div id="summaryLines"></div>
+      <div class="summary-note">Standard scheduling during business hours is recommended for the most efficient routing. Same-day, priority, and after-hours requests are available based on notice window, route availability, and workload.</div>
+      <div class="policy-box"><strong>How it works:</strong> Submit your request → receive your confirmed quote → approve and pay → your service is completed through notary support, mobile notary service, or document handling.</div>
+    </aside>
+  </section>
+
+  <div class="footer">Aligned Print &amp; Scan • Notary Support • Mobile Notary • Document Services<br>© 2026 Aligned Print &amp; Scan. All rights reserved.</div>
 </div>
-
-<div class="notice-box">Payment is required before printing or scheduling. Free secure pickup is available by appointment. Mobile service &amp; delivery starts at $20 and is adjusted based on distance. Your final quote is always confirmed before processing.</div>
-
-<div class="form-grid" style="margin-top:16px">
-<div class="field"><label for="firstName">First name</label><input id="firstName" type="text" placeholder="Enter your first name"></div>
-<div class="field"><label for="lastName">Last name</label><input id="lastName" type="text" placeholder="Enter your last name"></div>
-<div class="field full"><label for="companyName">Company name (optional)</label><input id="companyName" type="text" placeholder="Enter company name if applicable"></div>
-<div class="field"><label for="customerEmail">Email address</label><input id="customerEmail" type="email" placeholder="Enter your email"></div>
-<div class="field"><label for="customerPhone">Phone number</label><input id="customerPhone" type="tel" placeholder="Enter your phone number"></div>
-</div>
-
-<div id="servicesContainer"></div>
-<div class="cta-row"><button class="btn btn-primary" type="button" id="addServiceBtn">+ Add Another Service</button></div>
-
-<div class="form-grid" style="margin-top:14px">
-<div class="field"><label for="fulfillment">How would you like to receive your order?</label><select id="fulfillment"><option value="pickup">Free pickup by appointment</option><option value="delivery">Delivery ($20+)</option><option value="roundtrip">Pickup &amp; return</option><option value="mobileNotary">Mobile notary visit</option></select>
-<div class="helper" id="fulfillmentHelper">📍 Private pickup near Clift Elementary and the Texas Department of Public Safety - Waxahachie<br>Exact address provided after approved payment</div></div>
-<div class="field hidden" id="addressWrap"><label for="deliveryAddress">Delivery address</label><input id="deliveryAddress" type="text" placeholder="Enter your delivery address"></div>
-<div class="field"><label for="turnaround">Turnaround</label><select id="turnaround"><option value="standard">Standard (3–6 hours)</option><option value="rush">Rush (1–3 hours)</option><option value="priority">Priority rush (ASAP)</option></select></div>
-<div class="field"><label for="serviceTime">When do you need it?</label><select id="serviceTime"><option value="day">Before 6 PM</option><option value="after6">6 PM – 9 PM</option><option value="after9">9 PM – 10 PM</option><option value="after10">10 PM – 11 PM</option><option value="after11">11 PM+</option></select></div>
-<div class="field"><label for="preferredPayment">How would you like to pay?</label><select id="preferredPayment"><option value="zelle">Zelle</option><option value="cashapp">Cash App</option><option value="applepay">Apple Pay</option><option value="invoice">Invoice payment link</option></select></div>
-<div class="field full"><label for="notes">Order notes</label><textarea id="notes" placeholder="Add timing, file notes, address notes, or any special instructions."></textarea></div>
-</div>
-
-<div class="policy-box"><strong>Accepted payment options:</strong> Zelle, Cash App, Apple Pay, or invoice payment link by request. You can customize these methods before publishing if your business uses different payment platforms.</div>
-
-<div class="cta-row" style="margin-top:14px">
-<button class="btn btn-secondary" type="button" id="recalculateBtn">Recalculate Estimate</button>
-<button class="btn btn-secondary" type="button" id="copyBtn">Copy Quote Request</button>
-<button class="btn btn-secondary" type="button" id="emailBtn">Email Quote Request</button>
-<button class="btn btn-secondary" type="button" id="printBtn">Print / Save PDF</button>
-<button class="btn btn-secondary" type="button" id="resetBtn">Reset</button>
-</div>
-
-<p class="tiny">Note: file uploads are visual in this HTML file. To receive uploaded files through the website, connect the form to a backend or form service before publishing.</p>
-<div class="policy-box"><strong>Pickup instructions:</strong> Free secure pickup is available by appointment. After confirmation and payment, you will receive the pickup location, pickup window, and private access code. Orders are labeled and placed in a secure lockbox.</div>
-</main>
-
-<aside class="summary-card">
-<h2>Estimate Summary</h2>
-<p class="subtle">Approximate total pending final review, approval, and payment.</p>
-<div id="summaryLines"></div>
-<div class="cta-row" style="margin-top:14px">
-<button class="btn btn-primary" type="button" id="submitQuoteBtn" style="width:100%">Submit Quote Request</button>
-</div>
-<div class="summary-note">Delivery starts at $20. Your final delivery total is confirmed after your address is reviewed.</div>
-<div class="policy-box"><strong>How it works:</strong> Submit your request → receive your confirmed quote → approve and pay → your order is completed and delivered or ready for pickup.</div>
-</aside>
-</section></div>
-
-<template id="serviceTemplate">
-<section class="service-card">
-<div class="service-head"><span class="service-tag">Service <span class="service-number"></span></span><button class="btn btn-secondary remove-service-btn" type="button">Remove</button></div>
-<div class="form-grid">
-<div class="field"><label>What do you need?</label><select class="service-type"><option value="print">Printing</option><option value="scan">Scanned PDF</option><option value="printscan">Printed Order + Scanned PDF Copy</option><option value="format">Formatting / PDF Merge</option><option value="lamination">Lamination</option><option value="notary">Notary signatures</option><option value="custom">Other custom service</option></select></div>
-<div class="field"><label>What is this order for?</label><input type="text" class="service-details" placeholder="Example: school packet, legal forms, resume"><div class="helper">Choose Printed Order + Scanned PDF Copy when scanning is being added to a printed order.</div></div>
-</div>
-
-<div class="service-print-fields"><div class="form-grid">
-<div class="field"><label>How many pages?</label><input type="number" class="pages" min="0" value="0"></div>
-<div class="field"><label>How many copies or sets?</label><input type="number" class="copies" min="1" value="1"></div>
-<div class="field"><label>Print mode</label><select class="print-mode"><option value="bw">Black &amp; White</option><option value="color">Color</option></select></div>
-<div class="field"><label>Single or double-sided</label><select class="sides"><option value="single">Single-sided</option><option value="double">Double-sided</option></select></div>
-<div class="field"><label>Paper size</label><select class="paper-size"><option value="letter">Letter</option><option value="legal">Legal</option></select></div>
-<div class="field"><label>Paper type</label><select class="paper-type"><option value="standard">Standard white</option><option value="resume">Resume paper</option><option value="cardstock">Cardstock</option><option value="colorPaper">Colored paper</option></select></div>
-</div></div>
-
-<div class="service-scan-fields hidden"><div class="form-grid"><div class="field"><label>Pages to scan</label><input type="number" class="scan-pages" min="0" value="0"></div></div></div>
-<div class="service-format-fields hidden"><div class="form-grid"><div class="field"><label>Number of formatting / merge tasks</label><input type="number" class="format-count" min="0" value="1"></div></div></div>
-<div class="service-lamination-fields hidden"><div class="form-grid"><div class="field"><label>Sheets to laminate</label><input type="number" class="lamination-count" min="0" value="0"></div></div></div>
-<div class="service-notary-fields hidden"><div class="form-grid"><div class="field"><label>Number of signatures</label><input type="number" class="notary-count" min="0" value="0"></div></div></div>
-<div class="service-custom-fields hidden"><div class="form-grid"><div class="field"><label>Custom amount</label><input type="number" class="custom-amount" step="0.01" min="0" value="0"></div></div></div>
-
-<div class="form-grid">
-<div class="field"><label>Upload your file(s)</label><input type="file" class="service-file" multiple><div class="helper">Upload is visual only in this static HTML version.</div></div>
-<div class="field full"><label>Anything else we should know?</label><textarea class="service-notes" placeholder="Add service-specific notes here."></textarea></div>
-</div>
-</section>
-</template>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const rates = {bw_single:0.25,bw_double:0.35,color_single:0.50,color_double:0.65,legalUpcharge:0.10,resumePaper:0.25,cardstock:0.40,colorPaper:0.15,formatting:5.00,lamination:3.00,scanBase:5.00,notarySignature:10.00,rush:20.00,priority:30.00,after6:20.00,after9:30.00,after10:40.00,after11:50.00};
+  const rates = {
+    bw_single:0.25,bw_double:0.35,color_single:0.50,color_double:0.65,
+    legalUpcharge:0.10,resumePaper:0.25,cardstock:0.40,colorPaper:0.15,
+    formatting:5,lamination:3,scanBase:5,notarySignature:10,
+    travelBase:20,deliveryBase:20,pickupBase:20,courierBase:20,scanbacksBase:15,
+    supportTier25:25,supportTier35:35,supportTier45:45,supportBundle:75,
+    supportSameDay:25,supportPriority:50,docRush:20,docPriority:30,after7:25,after9:50
+  };
+
   const $ = id => document.getElementById(id);
-  const servicesContainer = $('servicesContainer');
-  const serviceTemplate = $('serviceTemplate');
-  const summaryLines = $('summaryLines');
-  const fulfillment = $('fulfillment');
-  const addressWrap = $('addressWrap');
+  const money = n => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n || 0);
 
-  const money = num => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(num || 0);
-  const deliveryFee = () => 20;
-  const afterHoursFee = () => ({day:0,after6:rates.after6,after9:rates.after9,after10:rates.after10,after11:rates.after11})[$('serviceTime').value] || 0;
-  const turnaroundFee = () => ({standard:0,rush:rates.rush,priority:rates.priority})[$('turnaround').value] || 0;
-  const printRate = (mode,sides) => mode === 'bw' ? (sides === 'single' ? rates.bw_single : rates.bw_double) : (sides === 'single' ? rates.color_single : rates.color_double);
-  const paperUpcharge = (size,type) => (size === 'legal' ? rates.legalUpcharge : 0) + (type === 'resume' ? rates.resumePaper : 0) + (type === 'cardstock' ? rates.cardstock : 0) + (type === 'colorPaper' ? rates.colorPaper : 0);
-  const scanPrice = pages => { const p = Math.max(0, Number(pages)||0); if (p <= 0) return 0; if (p <= 5) return rates.scanBase; return rates.scanBase + (p - 5); };
+  function afterHoursFee(){ return ({day:0,evening:rates.after7,late:rates.after9})[$('serviceTime').value] || 0; }
+  function supportTimingFee(value){ return ({standard:0,rush:rates.supportSameDay,priority:rates.supportPriority})[value] || 0; }
+  function mobileTimingFee(value){ return ({standard:0,sameDay:0,priority:rates.supportPriority})[value] || 0; }
+  function documentTimingFee(value){ return ({standard:0,rush:rates.docRush,priority:rates.docPriority})[value] || 0; }
+  function printRate(mode,sides){ return mode === 'bw' ? (sides === 'single' ? rates.bw_single : rates.bw_double) : (sides === 'single' ? rates.color_single : rates.color_double); }
+  function paperUpcharge(size,type){ return (size === 'legal' ? rates.legalUpcharge : 0) + (type === 'resume' ? rates.resumePaper : 0) + (type === 'cardstock' ? rates.cardstock : 0) + (type === 'colorPaper' ? rates.colorPaper : 0); }
+  function scanPrice(pages){ const p = Math.max(0, Number(pages)||0); if(p <= 0) return 0; if(p <= 5) return rates.scanBase; return rates.scanBase + (p - 5); }
 
-  function setVisibility(card){
-    const type = card.querySelector('.service-type').value;
-    const groups = {print:card.querySelector('.service-print-fields'),scan:card.querySelector('.service-scan-fields'),format:card.querySelector('.service-format-fields'),lamination:card.querySelector('.service-lamination-fields'),notary:card.querySelector('.service-notary-fields'),custom:card.querySelector('.service-custom-fields')};
-    Object.values(groups).forEach(el => el.classList.add('hidden'));
-    if(type === 'print' || type === 'printscan') groups.print.classList.remove('hidden');
-    if(type === 'scan' || type === 'printscan') groups.scan.classList.remove('hidden');
-    if(type === 'format') groups.format.classList.remove('hidden');
-    if(type === 'lamination') groups.lamination.classList.remove('hidden');
-    if(type === 'notary') groups.notary.classList.remove('hidden');
-    if(type === 'custom') groups.custom.classList.remove('hidden');
+  function updateMobileAddOnSections(){
+    $('mnPrintFields').classList.toggle('hidden', !$('mnPrint').checked);
+    $('mnScanFields').classList.toggle('hidden', !$('mnScan').checked);
+    $('mnCopyFields').classList.toggle('hidden', !$('mnCopy').checked);
   }
 
-  function renumber(){ [...servicesContainer.querySelectorAll('.service-card')].forEach((card, idx) => card.querySelector('.service-number').textContent = idx + 1); }
-
-  function addService(){
-    const node = document.importNode(serviceTemplate.content, true);
-    servicesContainer.appendChild(node);
-    const card = servicesContainer.lastElementChild;
-    card.querySelectorAll('input, select, textarea').forEach(el => { el.addEventListener('input', recalc); el.addEventListener('change', recalc); });
-    card.querySelector('.service-type').addEventListener('change', () => { setVisibility(card); recalc(); });
-    card.querySelector('.remove-service-btn').addEventListener('click', () => { card.remove(); renumber(); recalc(); });
-    setVisibility(card); renumber(); recalc();
+  function updateSections(){
+    const type = $('serviceCategory').value;
+    $('notarySupportSection').classList.toggle('hidden', type !== 'notarySupport');
+    $('mobileNotarySection').classList.toggle('hidden', type !== 'mobileNotary');
+    $('documentServicesSection').classList.toggle('hidden', type !== 'documentServices');
+    updateMobileAddOnSections();
+    recalc();
   }
-
-  function updateFulfillment(){ addressWrap.classList.toggle('hidden', fulfillment.value === 'pickup'); }
 
   function recalc(){
-    let total = 0;
+    const type = $('serviceCategory').value;
     const lines = [];
-    const emailLines = [];
+    let total = 0;
 
-    [...servicesContainer.querySelectorAll('.service-card')].forEach((card, idx) => {
-      const type = card.querySelector('.service-type').value;
-      const desc = card.querySelector('.service-details').value.trim() || `Service ${idx + 1}`;
+    if(type === 'notarySupport'){
+      const tier = $('packetTier').value;
+      if(tier === 'tier25'){ total += rates.supportTier25; lines.push(['Loan package printing (150–200 page packet)', rates.supportTier25]); }
+      if(tier === 'tier35'){ total += rates.supportTier35; lines.push(['Loan package printing (201–250 page packet)', rates.supportTier35]); }
+      if(tier === 'tier45'){ total += rates.supportTier45; lines.push(['Loan package printing (251+ page packet)', rates.supportTier45]); }
 
-      if(type === 'print' || type === 'printscan'){
-        const pages = Number(card.querySelector('.pages').value) || 0;
-        const copies = Number(card.querySelector('.copies').value) || 1;
-        const mode = card.querySelector('.print-mode').value;
-        const sides = card.querySelector('.sides').value;
-        const size = card.querySelector('.paper-size').value;
-        const paperType = card.querySelector('.paper-type').value;
-        const amount = Math.max(0, pages) * Math.max(1, copies) * (printRate(mode, sides) + paperUpcharge(size, paperType));
-        if(amount > 0){ total += amount; lines.push([`${desc} — Printing`, amount]); emailLines.push(`- ${desc} — Printing: ${money(amount)}`); }
+      if($('supportBundle').checked){
+        total += rates.supportBundle;
+        lines.push(['Full-service support bundle', rates.supportBundle]);
+      } else {
+        if($('supportDelivery').checked){ total += 25; lines.push(['Printed package delivery', 25]); }
+        if($('supportPickup').checked){ total += rates.pickupBase; lines.push(['Signed document pickup', rates.pickupBase]); }
+        if($('supportScanbacks').checked){ total += rates.scanbacksBase; lines.push(['Scan-backs', rates.scanbacksBase]); }
+        if($('supportCourier').checked){ total += rates.courierBase; lines.push(['Courier drop-off after scan-backs', rates.courierBase]); }
       }
 
-      if(type === 'scan' || type === 'printscan'){
-        const amount = scanPrice(card.querySelector('.scan-pages').value);
-        if(amount > 0){ total += amount; lines.push([`${desc} — Scanned PDF`, amount]); emailLines.push(`- ${desc} — Scanned PDF: ${money(amount)}`); }
-      }
-
-      if(type === 'format'){
-        const amount = (Number(card.querySelector('.format-count').value) || 0) * rates.formatting;
-        if(amount > 0){ total += amount; lines.push([`${desc} — Formatting / PDF Merge`, amount]); emailLines.push(`- ${desc} — Formatting / PDF Merge: ${money(amount)}`); }
-      }
-
-      if(type === 'lamination'){
-        const amount = (Number(card.querySelector('.lamination-count').value) || 0) * rates.lamination;
-        if(amount > 0){ total += amount; lines.push([`${desc} — Lamination`, amount]); emailLines.push(`- ${desc} — Lamination: ${money(amount)}`); }
-      }
-
-      if(type === 'notary'){
-        const amount = (Number(card.querySelector('.notary-count').value) || 0) * rates.notarySignature;
-        if(amount > 0){ total += amount; lines.push([`${desc} — Notary signatures`, amount]); emailLines.push(`- ${desc} — Notary signatures: ${money(amount)}`); }
-      }
-
-      if(type === 'custom'){
-        const amount = Number(card.querySelector('.custom-amount').value) || 0;
-        if(amount > 0){ total += amount; lines.push([`${desc} — Custom service`, amount]); emailLines.push(`- ${desc} — Custom service: ${money(amount)}`); }
-      }
-    });
-
-    const method = fulfillment.value;
-    const deliveryAddress = $('deliveryAddress') ? $('deliveryAddress').value.trim() : '';
-    if(method === 'delivery'){
-      const amount = deliveryFee(); total += amount; lines.push(['Delivery (base rate)', amount]); emailLines.push(`- Delivery (base rate): ${money(amount)}`);
-    } else if(method === 'roundtrip'){
-      const amount = deliveryFee() * 2; total += amount; lines.push(['Pickup & return (base delivery fees)', amount]); emailLines.push(`- Pickup & return (base delivery fees): ${money(amount)}`);
-    } else if(method === 'mobileNotary'){
-      const amount = deliveryFee(); total += amount; lines.push(['Mobile notary travel (base rate)', amount]); emailLines.push(`- Mobile notary travel (base rate): ${money(amount)}`);
-    } else {
-      lines.push(['Free pickup by appointment', 0]); emailLines.push(`- Free pickup by appointment: ${money(0)}`);
+      const tFee = supportTimingFee($('supportTurnaround').value);
+      if(tFee > 0){ total += tFee; lines.push([$('supportTurnaround').selectedOptions[0].text, tFee]); }
     }
 
-    const tFee = turnaroundFee();
-    if(tFee > 0){ const label = $('turnaround').options[$('turnaround').selectedIndex].text; total += tFee; lines.push([label, tFee]); emailLines.push(`- ${label}: ${money(tFee)}`); }
+    if(type === 'mobileNotary'){
+      const signatures = Math.max(0, Number($('notaryCount').value)||0);
+      const sigAmount = signatures * rates.notarySignature;
+      if(sigAmount > 0){ total += sigAmount; lines.push([`Notarization (${signatures} signature${signatures===1?'':'s'})`, sigAmount]); }
+      if($('mobileTravel').value === 'base'){ total += rates.travelBase; lines.push(['Mobile travel fee', rates.travelBase]); }
+      else { total += 25; lines.push(['Extended route mobile travel', 25]); }
+
+      if($('mnPrint').checked){
+        const pages = Math.max(0, Number($('mnPrintPages').value)||0);
+        const copies = Math.max(1, Number($('mnPrintCopies').value)||1);
+        const amount = pages * copies * (printRate($('mnPrintMode').value, $('mnPrintSides').value) + paperUpcharge($('mnPrintSize').value, $('mnPrintPaperType').value));
+        if(amount > 0){ total += amount; lines.push(['Print add-on', amount]); }
+        else { lines.push(['Print add-on', 0]); }
+      }
+      if($('mnScan').checked){
+        const amount = scanPrice($('mnScanPages').value);
+        if(amount > 0){ total += amount; lines.push(['Scan add-on', amount]); }
+        else { lines.push(['Scan add-on', 0]); }
+      }
+      if($('mnCopy').checked){
+        const pages = Math.max(0, Number($('mnCopyPages').value)||0);
+        const copies = Math.max(1, Number($('mnCopySets').value)||1);
+        const amount = pages * copies * (printRate($('mnCopyMode').value, $('mnCopySides').value) + paperUpcharge($('mnCopySize').value, $('mnCopyPaperType').value));
+        if(amount > 0){ total += amount; lines.push(['Copy add-on', amount]); }
+        else { lines.push(['Copy add-on', 0]); }
+      }
+
+      const tFee = mobileTimingFee($('mobileTurnaround').value);
+      if(tFee > 0){ total += tFee; lines.push([$('mobileTurnaround').selectedOptions[0].text, tFee]); }
+    }
+
+    if(type === 'documentServices'){
+      const service = $('docServiceType').value;
+      const pages = Math.max(0, Number($('docPages').value)||0);
+      const copies = Math.max(1, Number($('docCopies').value)||1);
+      const perPage = printRate($('docMode').value, $('docSides').value) + paperUpcharge($('docSize').value, $('docPaperType').value);
+      const printAmount = pages * copies * perPage;
+      const scanAmount = scanPrice($('docScanPages').value);
+      const formatAmount = (Number($('docFormatCount').value)||0) * rates.formatting;
+      const lamAmount = (Number($('docLaminationCount').value)||0) * rates.lamination;
+
+      if(service === 'print' || service === 'printscan' || service === 'copy'){
+        if(printAmount > 0){ total += printAmount; lines.push([`${$('docServiceType').selectedOptions[0].text} estimate`, printAmount]); }
+      }
+      if(service === 'scan' || service === 'printscan'){
+        if(scanAmount > 0){ total += scanAmount; lines.push(['Scanned PDF', scanAmount]); }
+      }
+      if(service === 'format'){
+        if(formatAmount > 0){ total += formatAmount; lines.push(['Formatting / PDF merge', formatAmount]); }
+      }
+      if(service === 'lamination'){
+        if(lamAmount > 0){ total += lamAmount; lines.push(['Lamination', lamAmount]); }
+      }
+      if($('docAddScan').checked && service !== 'scan' && service !== 'printscan' && scanAmount > 0){ total += scanAmount; lines.push(['Scanned PDF add-on', scanAmount]); }
+      if($('docAddFormat').checked && service !== 'format' && formatAmount > 0){ total += formatAmount; lines.push(['Formatting / PDF merge add-on', formatAmount]); }
+      if($('docAddLamination').checked && service !== 'lamination' && lamAmount > 0){ total += lamAmount; lines.push(['Lamination add-on', lamAmount]); }
+
+      if($('docFulfillment').value === 'delivery' || $('docFulfillment').value === 'mobile' || $('docAddDelivery').checked){ total += rates.deliveryBase; lines.push([$('docFulfillment').value === 'limitedPickup' && $('docAddDelivery').checked ? 'Delivery / mobile fulfillment add-on' : $('docFulfillment').selectedOptions[0].text, rates.deliveryBase]); }
+      const tFee = documentTimingFee($('docTurnaround').value);
+      if(tFee > 0){ total += tFee; lines.push([$('docTurnaround').selectedOptions[0].text, tFee]); }
+    }
 
     const aFee = afterHoursFee();
-    if(aFee > 0){ const label = $('serviceTime').options[$('serviceTime').selectedIndex].text + ' service'; total += aFee; lines.push([label, aFee]); emailLines.push(`- ${label}: ${money(aFee)}`); }
+    if(aFee > 0){ total += aFee; lines.push([$('serviceTime').selectedOptions[0].text + ' service', aFee]); }
 
-    summaryLines.innerHTML = (lines.map(item => `<div class="line-item"><span>${item[0]}</span><span class="amount">${money(item[1])}</span></div>`).join('') || '<p class="subtle">Add services to see your estimate.</p>') + `<div class="big-total"><span>Approximate total pending final review</span><strong>${money(total)}</strong></div>`;
+    $('summaryLines').innerHTML = (lines.map(([label, amount]) => `<div class="line-item"><span>${label}</span><span class="amount">${money(amount)}</span></div>`).join('') || '<p class="subtle">Complete the form to see your estimate.</p>') + `<div class="big-total"><span>Approximate total pending final review</span><strong>${money(total)}</strong></div>`;
 
     window.currentRequestSummary = [
-      `First name: ${$('firstName').value || ''}`,
-      `Last name: ${$('lastName').value || ''}`,
+      `Service type: ${$('serviceCategory').selectedOptions[0].text}`,
+      `First name: ${$('customerFirstName').value || ''}`,
+      `Last name: ${$('customerLastName').value || ''}`,
+      `Signer name(s): ${$('signerNames').value || ''}`,
+      `Number of signers: ${$('signerCount').value || ''}`,
+      `Type of ID: ${$('idType').selectedOptions[0].text}`,
       `Company name: ${$('companyName').value || ''}`,
-      `Email: ${$('customerEmail').value || ''}`,
       `Phone: ${$('customerPhone').value || ''}`,
-      `How would you like to receive your order?: ${$('fulfillment').options[$('fulfillment').selectedIndex].text}`,
-      `Delivery address: ${$('deliveryAddress') ? ($('deliveryAddress').value || '') : ''}`,
-      `Turnaround: ${$('turnaround').options[$('turnaround').selectedIndex].text}`,
-      `Requested time: ${$('serviceTime').options[$('serviceTime').selectedIndex].text}`,
-      `Preferred payment: ${$('preferredPayment').options[$('preferredPayment').selectedIndex].text}`,
+      `Email: ${$('customerEmail').value || ''}`,
+      `Service address: ${$('serviceAddress').value || ''}`,
+      `City / area: ${$('cityArea').value || ''}`,
+      `Requested date: ${$('requestedDate').value || ''}`,
+      `Requested time window: ${$('serviceTime').selectedOptions[0].text}`,
       '',
-      'Requested items:',
-      ...emailLines,
+      ...lines.map(([label, amount]) => `- ${label}: ${money(amount)}`),
       '',
       `Approximate total pending final review: ${money(total)}`,
       '',
-      `Order notes: ${$('notes').value || ''}`
+      `Required documents ready: ${$('docsReady').checked ? 'Yes' : 'No'}`,
+      `Signer has non-expired ID: ${$('validIdReady').checked ? 'Yes' : 'No'}`,
+      `Witness required: ${$('witnessNeeded').checked ? 'Yes' : 'No'}`,
+      `Witness has non-expired ID: ${$('witnessReady').checked ? 'Yes' : 'No'}`,
+      `Accuracy acknowledgement checked: ${$('accuracyCheck').checked ? 'Yes' : 'No'}`,
+      `Notary support notes: ${$('supportNotes').value || ''}`,
+      `Mobile notary notes: ${$('mobileNotes').value || ''}`,
+      `Document service notes: ${$('documentNotes').value || ''}`
     ].join('\n');
   }
 
-
-  async function submitQuoteRequest() {
-    try {
-      recalc();
-
-      const firstName = $('firstName')?.value.trim() || '';
-      const lastName = $('lastName')?.value.trim() || '';
-      const companyName = $('companyName')?.value.trim() || null;
-      const customerEmail = $('customerEmail')?.value.trim() || '';
-      const customerPhone = $('customerPhone')?.value.trim() || '';
-      const fulfillmentMethod = $('fulfillment')?.value || 'pickup';
-      const deliveryAddress = $('deliveryAddress')?.value.trim() || null;
-      const turnaroundType = $('turnaround')?.value || 'standard';
-      const requestedTime = $('serviceTime')?.value || 'day';
-      const preferredPayment = $('preferredPayment')?.value || 'invoice';
-      const notes = $('notes')?.value.trim() || null;
-
-      if (!firstName || !lastName || !customerEmail || !customerPhone) {
-        alert('Please complete first name, last name, email, and phone number.');
-        return;
-      }
-
-      if ((fulfillmentMethod === 'delivery' || fulfillmentMethod === 'roundtrip' || fulfillmentMethod === 'mobileNotary') && !deliveryAddress) {
-        alert('Please enter the delivery address.');
-        return;
-      }
-
-      const totalText = document.querySelector('.big-total strong')?.textContent || '$0';
-      const approximateTotal = Number(totalText.replace(/[^0-9.]/g, '')) || 0;
-
-      const { data: customerData, error: customerError } = await supabaseClient
-        .from('customers')
-        .insert([
-          {
-            first_name: firstName,
-            last_name: lastName,
-            company_name: companyName,
-            email: customerEmail,
-            phone: customerPhone
-          }
-        ])
-        .select()
-        .single();
-
-      if (customerError) throw customerError;
-
-      const { data: orderData, error: orderError } = await supabaseClient
-        .from('orders')
-        .insert([
-          {
-            customer_id: customerData.id,
-            fulfillment_method: fulfillmentMethod,
-            delivery_address: deliveryAddress,
-            turnaround_type: turnaroundType,
-            requested_time: requestedTime,
-            preferred_payment: preferredPayment,
-            approximate_total: approximateTotal,
-            final_total: null,
-            status: 'new',
-            notes: notes
-          }
-        ])
-        .select()
-        .single();
-
-      if (orderError) throw orderError;
-
-      const serviceCards = [...servicesContainer.querySelectorAll('.service-card')];
-
-      for (const [index, card] of serviceCards.entries()) {
-        const fileInput = card.querySelector('.service-file');
-        const files = fileInput && fileInput.files ? [...fileInput.files] : [];
-
-        for (const file of files) {
-          const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-          const storagePath = `${orderData.id}/${Date.now()}_${index + 1}_${safeName}`;
-
-          const { error: uploadError } = await supabaseClient
-            .storage
-            .from('order_files')
-            .upload(storagePath, file, { upsert: false });
-
-          if (uploadError) throw uploadError;
-
-          const { error: fileRowError } = await supabaseClient
-            .from('order_files')
-            .insert([
-              {
-                order_id: orderData.id,
-                file_name: file.name,
-                storage_path: storagePath
-              }
-            ]);
-
-          if (fileRowError) throw fileRowError;
-        }
-      }
-
-      alert('Quote request submitted successfully.');
-      resetForm();
-    } catch (error) {
-      console.error('Supabase submit error:', error);
-      alert('Something went wrong submitting your quote request. Check the browser console, your Supabase table policies, and your storage bucket policies.');
-    }
+  function bindAll(){
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', recalc);
+      el.addEventListener('change', recalc);
+    });
   }
 
   function copySummary(){ navigator.clipboard.writeText(window.currentRequestSummary || '').then(() => alert('Request summary copied.')); }
   function emailSummary(){ const subject = encodeURIComponent('Aligned Print & Scan Quote Request'); const body = encodeURIComponent(window.currentRequestSummary || ''); window.location.href = `mailto:hello@alignedprintscan.com?subject=${subject}&body=${body}`; }
-  function resetForm(){ $('firstName').value=''; $('lastName').value=''; $('companyName').value=''; $('customerEmail').value=''; $('customerPhone').value=''; $('fulfillment').value='pickup'; if($('deliveryAddress')) $('deliveryAddress').value=''; $('turnaround').value='standard'; $('serviceTime').value='day'; $('preferredPayment').value='zelle'; $('notes').value=''; servicesContainer.innerHTML=''; updateFulfillment(); addService(); }
+  function resetForm(){ document.querySelectorAll('input, textarea').forEach(el => { if(el.type === 'checkbox'){ el.checked = false; } else if(el.type === 'file'){ el.value = ''; } else if(el.type !== 'date'){ el.value = ''; } }); document.querySelectorAll('select').forEach(sel => sel.selectedIndex = 0); $('notaryCount').value = 1; $('signerCount').value = 1; $('docCopies').value = 1; $('docPages').value = 0; $('docScanPages').value = 0; $('docFormatCount').value = 0; $('docLaminationCount').value = 0; $('mnPrintPages').value = 0; $('mnPrintCopies').value = 1; $('mnScanPages').value = 0; $('mnCopyPages').value = 0; $('mnCopySets').value = 1; $('serviceCategory').value = 'notarySupport'; updateSections(); }
 
-  $('submitQuoteBtn').addEventListener('click', submitQuoteRequest);
-  $('addServiceBtn').addEventListener('click', addService);
+  $('serviceCategory').addEventListener('change', updateSections);
+  ['mnPrint','mnScan','mnCopy'].forEach(id => $(id).addEventListener('change', updateMobileAddOnSections));
   $('recalculateBtn').addEventListener('click', recalc);
   $('copyBtn').addEventListener('click', copySummary);
   $('emailBtn').addEventListener('click', emailSummary);
   $('printBtn').addEventListener('click', () => window.print());
   $('resetBtn').addEventListener('click', resetForm);
-  fulfillment.addEventListener('change', () => { updateFulfillment(); recalc(); });
-  ['firstName','lastName','companyName','customerEmail','customerPhone','deliveryAddress','turnaround','serviceTime','preferredPayment','notes'].forEach(id => { const el = $(id); if(el){ el.addEventListener('input', recalc); el.addEventListener('change', recalc); } });
 
-  updateFulfillment();
-  addService();
+  bindAll();
+  updateSections();
 });
 </script>
-<script>
-document.getElementById("fulfillment").addEventListener("change", function() {
-  const helper = document.getElementById("fulfillmentHelper");
-
-  if (this.value === "pickup") {
-    helper.innerHTML = "📍 Private pickup near Clift Elementary and the Texas Department of Public Safety - Waxahachie<br>Exact address provided after approved payment";
-  } else if (this.value === "delivery") {
-    helper.innerHTML = "🚚 Delivery available within 5 miles<br>Address required at checkout";
-  } else {
-    helper.innerHTML = "";
-  }
-});
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const SUPABASE_URL = "https://sfsdniavqldgbiretply.supabase.co";
-const SUPABASE_KEY = "sb_publishable_3MoT1l5HDSzRIvXTK8Rdqw_ch9OtOnp";
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-</script>
-
 </body></html>
