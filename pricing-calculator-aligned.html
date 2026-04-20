@@ -99,6 +99,12 @@ textarea{min-height:100px;resize:vertical}
 .amount{font-weight:800;color:var(--ink)}
 .big-total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:12px;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,var(--blue-1),var(--blue-2));color:#fff}
 .big-total strong{font-size:28px}
+.status-box{margin-top:14px;padding:14px 16px;border-radius:14px;font-size:14px;line-height:1.7;display:none}
+.status-box.show{display:block}
+.status-box.info{background:#eef6ff;border:1px solid #d9e7fb;color:#33527d}
+.status-box.success{background:#edf9f0;border:1px solid #cfe8d5;color:#245c31}
+.status-box.error{background:#fff1f1;border:1px solid #efcaca;color:#8a2430}
+.btn[disabled]{opacity:.65;cursor:not-allowed}
 .footer{
                             margin-top:60px;
                             padding:40px 24px 20px;
@@ -355,12 +361,14 @@ textarea{min-height:100px;resize:vertical}
       <div class="policy-box"><strong>Identity &amp; accuracy acknowledgement:</strong> <label style="font-weight:500;color:inherit"><input id="accuracyCheck" type="checkbox" style="width:auto;margin-right:8px">I confirm the names, address, phone number, email address, and request details entered above are accurate to the best of my knowledge.</label></div>
 
       <div class="cta-row" style="margin-top:14px">
+        <button class="btn btn-primary" type="button" id="submitBtn">Submit Request</button>
         <button class="btn btn-secondary" type="button" id="recalculateBtn">Recalculate Estimate</button>
         <button class="btn btn-secondary" type="button" id="copyBtn">Copy Quote Request</button>
         <button class="btn btn-secondary" type="button" id="emailBtn">Email Quote Request</button>
         <button class="btn btn-secondary" type="button" id="printBtn">Print / Save PDF</button>
         <button class="btn btn-secondary" type="button" id="resetBtn">Reset</button>
       </div>
+      <div id="submitStatus" class="status-box info">Ready to save this request to Supabase after you add your project URL and anon key below in the script configuration.</div>
     </main>
 
     <aside class="summary-card">
@@ -409,8 +417,17 @@ textarea{min-height:100px;resize:vertical}
             </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  const SUPABASE_URL = 'https://sfsdniavqldgbiretply.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNmc2RuaWF2cWxkZ2JpcmV0cGx5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0MTY5MTEsImV4cCI6MjA5MDk5MjkxMX0.3tcbpUVDq9J80f5CdngDxdJ1T70vlouCrfGuv55JCco';
+  const SUPABASE_BUCKET = 'request-files';
+  const supabaseReady = typeof window.supabase !== 'undefined'
+    && !SUPABASE_URL.includes('PASTE_YOUR')
+    && !SUPABASE_ANON_KEY.includes('PASTE_YOUR');
+  const supabaseClient = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
   const rates = {
     bw_single:0.25,bw_double:0.35,color_single:0.50,color_double:0.65,
     legalUpcharge:0.10,resumePaper:0.25,cardstock:0.40,colorPaper:0.15,
@@ -423,6 +440,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const $ = id => document.getElementById(id);
   const money = n => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n || 0);
 
+  function setStatus(message, type = 'info') {
+    const box = $('submitStatus');
+    box.textContent = message;
+    box.className = `status-box show ${type}`;
+  }
+
   function afterHoursFee(){ return ({day:0,evening:rates.after7,late:rates.after9})[$('serviceTime').value] || 0; }
   function supportTimingFee(value){ return ({standard:0,rush:rates.supportSameDay,priority:rates.supportPriority})[value] || 0; }
   function mobileTimingFee(value){ return ({standard:0,sameDay:0,priority:rates.supportPriority})[value] || 0; }
@@ -430,6 +453,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function printRate(mode,sides){ return mode === 'bw' ? (sides === 'single' ? rates.bw_single : rates.bw_double) : (sides === 'single' ? rates.color_single : rates.color_double); }
   function paperUpcharge(size,type){ return (size === 'legal' ? rates.legalUpcharge : 0) + (type === 'resume' ? rates.resumePaper : 0) + (type === 'cardstock' ? rates.cardstock : 0) + (type === 'colorPaper' ? rates.colorPaper : 0); }
   function scanPrice(pages){ const p = Math.max(0, Number(pages)||0); if(p <= 0) return 0; if(p <= 5) return rates.scanBase; return rates.scanBase + (p - 5); }
+  function selectedText(id){ const el = $(id); return el && el.selectedOptions && el.selectedOptions[0] ? el.selectedOptions[0].text : ''; }
+  function num(id, fallback = 0){ return Math.max(0, Number($(id)?.value) || fallback); }
 
   function updateMobileAddOnSections(){
     $('mnPrintFields').classList.toggle('hidden', !$('mnPrint').checked);
@@ -468,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const tFee = supportTimingFee($('supportTurnaround').value);
-      if(tFee > 0){ total += tFee; lines.push([$('supportTurnaround').selectedOptions[0].text, tFee]); }
+      if(tFee > 0){ total += tFee; lines.push([selectedText('supportTurnaround'), tFee]); }
     }
 
     if(type === 'mobileNotary'){
@@ -483,23 +508,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const copies = Math.max(1, Number($('mnPrintCopies').value)||1);
         const amount = pages * copies * (printRate($('mnPrintMode').value, $('mnPrintSides').value) + paperUpcharge($('mnPrintSize').value, $('mnPrintPaperType').value));
         if(amount > 0){ total += amount; lines.push(['Print add-on', amount]); }
-        else { lines.push(['Print add-on', 0]); }
       }
       if($('mnScan').checked){
         const amount = scanPrice($('mnScanPages').value);
         if(amount > 0){ total += amount; lines.push(['Scan add-on', amount]); }
-        else { lines.push(['Scan add-on', 0]); }
       }
       if($('mnCopy').checked){
         const pages = Math.max(0, Number($('mnCopyPages').value)||0);
         const copies = Math.max(1, Number($('mnCopySets').value)||1);
         const amount = pages * copies * (printRate($('mnCopyMode').value, $('mnCopySides').value) + paperUpcharge($('mnCopySize').value, $('mnCopyPaperType').value));
         if(amount > 0){ total += amount; lines.push(['Copy add-on', amount]); }
-        else { lines.push(['Copy add-on', 0]); }
       }
 
       const tFee = mobileTimingFee($('mobileTurnaround').value);
-      if(tFee > 0){ total += tFee; lines.push([$('mobileTurnaround').selectedOptions[0].text, tFee]); }
+      if(tFee > 0){ total += tFee; lines.push([selectedText('mobileTurnaround'), tFee]); }
     }
 
     if(type === 'documentServices'){
@@ -513,7 +535,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const lamAmount = (Number($('docLaminationCount').value)||0) * rates.lamination;
 
       if(service === 'print' || service === 'printscan' || service === 'copy'){
-        if(printAmount > 0){ total += printAmount; lines.push([`${$('docServiceType').selectedOptions[0].text} estimate`, printAmount]); }
+        if(printAmount > 0){ total += printAmount; lines.push([`${selectedText('docServiceType')} estimate`, printAmount]); }
       }
       if(service === 'scan' || service === 'printscan'){
         if(scanAmount > 0){ total += scanAmount; lines.push(['Scanned PDF', scanAmount]); }
@@ -528,30 +550,34 @@ document.addEventListener('DOMContentLoaded', function () {
       if($('docAddFormat').checked && service !== 'format' && formatAmount > 0){ total += formatAmount; lines.push(['Formatting / PDF merge add-on', formatAmount]); }
       if($('docAddLamination').checked && service !== 'lamination' && lamAmount > 0){ total += lamAmount; lines.push(['Lamination add-on', lamAmount]); }
 
-      if($('docFulfillment').value === 'delivery' || $('docFulfillment').value === 'mobile' || $('docAddDelivery').checked){ total += rates.deliveryBase; lines.push([$('docFulfillment').value === 'limitedPickup' && $('docAddDelivery').checked ? 'Delivery / mobile fulfillment add-on' : $('docFulfillment').selectedOptions[0].text, rates.deliveryBase]); }
+      if($('docFulfillment').value === 'delivery' || $('docFulfillment').value === 'mobile' || $('docAddDelivery').checked){
+        total += rates.deliveryBase;
+        lines.push([$('docFulfillment').value === 'limitedPickup' && $('docAddDelivery').checked ? 'Delivery / mobile fulfillment add-on' : selectedText('docFulfillment'), rates.deliveryBase]);
+      }
       const tFee = documentTimingFee($('docTurnaround').value);
-      if(tFee > 0){ total += tFee; lines.push([$('docTurnaround').selectedOptions[0].text, tFee]); }
+      if(tFee > 0){ total += tFee; lines.push([selectedText('docTurnaround'), tFee]); }
     }
 
     const aFee = afterHoursFee();
-    if(aFee > 0){ total += aFee; lines.push([$('serviceTime').selectedOptions[0].text + ' service', aFee]); }
+    if(aFee > 0){ total += aFee; lines.push([selectedText('serviceTime') + ' service', aFee]); }
 
     $('summaryLines').innerHTML = (lines.map(([label, amount]) => `<div class="line-item"><span>${label}</span><span class="amount">${money(amount)}</span></div>`).join('') || '<p class="subtle">Complete the form to see your estimate.</p>') + `<div class="big-total"><span>Approximate total pending final review</span><strong>${money(total)}</strong></div>`;
 
+    window.currentEstimate = { total, lines };
     window.currentRequestSummary = [
-      `Service type: ${$('serviceCategory').selectedOptions[0].text}`,
+      `Service type: ${selectedText('serviceCategory')}`,
       `First name: ${$('customerFirstName').value || ''}`,
       `Last name: ${$('customerLastName').value || ''}`,
       `Signer name(s): ${$('signerNames').value || ''}`,
       `Number of signers: ${$('signerCount').value || ''}`,
-      `Type of ID: ${$('idType').selectedOptions[0].text}`,
+      `Type of ID: ${selectedText('idType')}`,
       `Company name: ${$('companyName').value || ''}`,
       `Phone: ${$('customerPhone').value || ''}`,
       `Email: ${$('customerEmail').value || ''}`,
       `Service address: ${$('serviceAddress').value || ''}`,
       `City / area: ${$('cityArea').value || ''}`,
       `Requested date: ${$('requestedDate').value || ''}`,
-      `Requested time window: ${$('serviceTime').selectedOptions[0].text}`,
+      `Requested time window: ${selectedText('serviceTime')}`,
       '',
       ...lines.map(([label, amount]) => `- ${label}: ${money(amount)}`),
       '',
@@ -568,6 +594,189 @@ document.addEventListener('DOMContentLoaded', function () {
     ].join('\n');
   }
 
+  function collectRequestData() {
+    const estimate = window.currentEstimate || { total: 0, lines: [] };
+    const type = $('serviceCategory').value;
+    return {
+      service_category: type,
+      service_category_label: selectedText('serviceCategory'),
+      requested_time_window: $('serviceTime').value,
+      requested_time_window_label: selectedText('serviceTime'),
+      customer_first_name: $('customerFirstName').value.trim(),
+      customer_last_name: $('customerLastName').value.trim(),
+      signer_names: $('signerNames').value.trim(),
+      company_name: $('companyName').value.trim(),
+      customer_phone: $('customerPhone').value.trim(),
+      customer_email: $('customerEmail').value.trim(),
+      service_address: $('serviceAddress').value.trim(),
+      city_area: $('cityArea').value.trim(),
+      requested_date: $('requestedDate').value || null,
+      approximate_total: estimate.total,
+      estimate_lines: estimate.lines.map(([label, amount]) => ({ label, amount })),
+      summary_text: window.currentRequestSummary || '',
+      accuracy_confirmed: $('accuracyCheck').checked,
+      files_expected: Array.from($('generalUpload').files || []).map(file => ({
+        name: file.name,
+        size: file.size,
+        type: file.type || 'application/octet-stream'
+      })),
+      details: {
+        notary_support: {
+          packet_tier: $('packetTier').value,
+          packet_tier_label: selectedText('packetTier'),
+          support_turnaround: $('supportTurnaround').value,
+          support_turnaround_label: selectedText('supportTurnaround'),
+          delivery: $('supportDelivery').checked,
+          pickup: $('supportPickup').checked,
+          scanbacks: $('supportScanbacks').checked,
+          courier: $('supportCourier').checked,
+          bundle: $('supportBundle').checked,
+          notes: $('supportNotes').value.trim()
+        },
+        mobile_notary: {
+          document_type: $('mobileDocType').value,
+          document_type_label: selectedText('mobileDocType'),
+          notary_count: num('notaryCount'),
+          signer_count: num('signerCount', 1),
+          appointment_timing: $('mobileTurnaround').value,
+          appointment_timing_label: selectedText('mobileTurnaround'),
+          travel_fee_type: $('mobileTravel').value,
+          travel_fee_type_label: selectedText('mobileTravel'),
+          id_type: $('idType').value,
+          id_type_label: selectedText('idType'),
+          docs_ready: $('docsReady').checked,
+          valid_id_ready: $('validIdReady').checked,
+          witness_needed: $('witnessNeeded').checked,
+          witness_ready: $('witnessReady').checked,
+          add_ons: {
+            print: $('mnPrint').checked,
+            scan: $('mnScan').checked,
+            copy: $('mnCopy').checked
+          },
+          print: {
+            pages: num('mnPrintPages'),
+            copies: Math.max(1, Number($('mnPrintCopies').value) || 1),
+            mode: $('mnPrintMode').value,
+            sides: $('mnPrintSides').value,
+            size: $('mnPrintSize').value,
+            paper_type: $('mnPrintPaperType').value
+          },
+          scan: { pages: num('mnScanPages') },
+          copy: {
+            pages: num('mnCopyPages'),
+            copies: Math.max(1, Number($('mnCopySets').value) || 1),
+            mode: $('mnCopyMode').value,
+            sides: $('mnCopySides').value,
+            size: $('mnCopySize').value,
+            paper_type: $('mnCopyPaperType').value
+          },
+          notes: $('mobileNotes').value.trim()
+        },
+        document_services: {
+          primary_service: $('docServiceType').value,
+          primary_service_label: selectedText('docServiceType'),
+          fulfillment: $('docFulfillment').value,
+          fulfillment_label: selectedText('docFulfillment'),
+          pages: num('docPages'),
+          copies: Math.max(1, Number($('docCopies').value) || 1),
+          mode: $('docMode').value,
+          sides: $('docSides').value,
+          size: $('docSize').value,
+          paper_type: $('docPaperType').value,
+          turnaround: $('docTurnaround').value,
+          turnaround_label: selectedText('docTurnaround'),
+          scan_pages: num('docScanPages'),
+          format_count: num('docFormatCount'),
+          lamination_count: num('docLaminationCount'),
+          add_scan: $('docAddScan').checked,
+          add_format: $('docAddFormat').checked,
+          add_lamination: $('docAddLamination').checked,
+          add_delivery: $('docAddDelivery').checked,
+          notes: $('documentNotes').value.trim()
+        }
+      }
+    };
+  }
+
+  function validateRequest(data) {
+    if (!data.customer_first_name || !data.customer_last_name) {
+      throw new Error('Please enter the customer first and last name.');
+    }
+    if (!data.customer_phone) {
+      throw new Error('Please enter a phone number.');
+    }
+    if (!data.customer_email) {
+      throw new Error('Please enter an email address.');
+    }
+    if (!data.service_address) {
+      throw new Error('Please enter the service address.');
+    }
+    if (!data.accuracy_confirmed) {
+      throw new Error('Please check the accuracy acknowledgement before submitting.');
+    }
+  }
+
+  async function uploadFiles(requestId) {
+    const files = Array.from($('generalUpload').files || []);
+    if (!files.length) return [];
+    const uploaded = [];
+
+    for (const file of files) {
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]+/g, '-');
+      const filePath = `${requestId}/${Date.now()}-${safeName}`;
+      const { error: uploadError } = await supabaseClient.storage
+        .from(SUPABASE_BUCKET)
+        .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+      if (uploadError) throw uploadError;
+
+      const metadataRow = {
+        request_id: requestId,
+        bucket_name: SUPABASE_BUCKET,
+        file_path: filePath,
+        original_name: file.name,
+        content_type: file.type || 'application/octet-stream',
+        byte_size: file.size
+      };
+
+      const { error: metaError } = await supabaseClient.from('quote_request_files').insert(metadataRow);
+      if (metaError) throw metaError;
+      uploaded.push(metadataRow);
+    }
+
+    return uploaded;
+  }
+
+  async function submitRequest() {
+    try {
+      recalc();
+      if (!supabaseReady) {
+        throw new Error('Add your Supabase project URL and anon key in the script before using Submit Request.');
+      }
+      const payload = collectRequestData();
+      validateRequest(payload);
+
+      $('submitBtn').disabled = true;
+      setStatus('Saving request to Supabase and uploading files…', 'info');
+
+      const { data: inserted, error: insertError } = await supabaseClient
+        .from('quote_requests')
+        .insert(payload)
+        .select('id, created_at')
+        .single();
+
+      if (insertError) throw insertError;
+
+      const uploaded = await uploadFiles(inserted.id);
+      setStatus(`Request saved successfully. Request ID: ${inserted.id}. ${uploaded.length} file(s) uploaded.`, 'success');
+    } catch (error) {
+      console.error(error);
+      setStatus(error.message || 'Something went wrong while saving the request.', 'error');
+    } finally {
+      $('submitBtn').disabled = false;
+    }
+  }
+
   function bindAll(){
     document.querySelectorAll('input, select, textarea').forEach(el => {
       el.addEventListener('input', recalc);
@@ -575,12 +784,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function copySummary(){ navigator.clipboard.writeText(window.currentRequestSummary || '').then(() => alert('Request summary copied.')); }
+  function copySummary(){ navigator.clipboard.writeText(window.currentRequestSummary || '').then(() => setStatus('Request summary copied.', 'success')); }
   function emailSummary(){ const subject = encodeURIComponent('Aligned Print & Scan Quote Request'); const body = encodeURIComponent(window.currentRequestSummary || ''); window.location.href = `mailto:hello@alignedprintscan.com?subject=${subject}&body=${body}`; }
-  function resetForm(){ document.querySelectorAll('input, textarea').forEach(el => { if(el.type === 'checkbox'){ el.checked = false; } else if(el.type === 'file'){ el.value = ''; } else if(el.type !== 'date'){ el.value = ''; } }); document.querySelectorAll('select').forEach(sel => sel.selectedIndex = 0); $('notaryCount').value = 1; $('signerCount').value = 1; $('docCopies').value = 1; $('docPages').value = 0; $('docScanPages').value = 0; $('docFormatCount').value = 0; $('docLaminationCount').value = 0; $('mnPrintPages').value = 0; $('mnPrintCopies').value = 1; $('mnScanPages').value = 0; $('mnCopyPages').value = 0; $('mnCopySets').value = 1; $('serviceCategory').value = 'notarySupport'; updateSections(); }
+  function resetForm(){ document.querySelectorAll('input, textarea').forEach(el => { if(el.type === 'checkbox'){ el.checked = false; } else if(el.type === 'file'){ el.value = ''; } else if(el.type !== 'date'){ el.value = ''; } }); document.querySelectorAll('select').forEach(sel => sel.selectedIndex = 0); $('notaryCount').value = 1; $('signerCount').value = 1; $('docCopies').value = 1; $('docPages').value = 0; $('docScanPages').value = 0; $('docFormatCount').value = 0; $('docLaminationCount').value = 0; $('mnPrintPages').value = 0; $('mnPrintCopies').value = 1; $('mnScanPages').value = 0; $('mnCopyPages').value = 0; $('mnCopySets').value = 1; $('serviceCategory').value = 'notarySupport'; setStatus('Form reset.', 'info'); updateSections(); }
 
   $('serviceCategory').addEventListener('change', updateSections);
   ['mnPrint','mnScan','mnCopy'].forEach(id => $(id).addEventListener('change', updateMobileAddOnSections));
+  $('submitBtn').addEventListener('click', submitRequest);
   $('recalculateBtn').addEventListener('click', recalc);
   $('copyBtn').addEventListener('click', copySummary);
   $('emailBtn').addEventListener('click', emailSummary);
@@ -589,6 +799,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   bindAll();
   updateSections();
-});
-</script>
+  setStatus(supabaseReady ? 'Supabase is configured. Submit Request will save records and file metadata.' : 'Ready to save this request to Supabase after you add your project URL and anon key below in the script configuration.', 'info');
+});</script>
 </body></html>
